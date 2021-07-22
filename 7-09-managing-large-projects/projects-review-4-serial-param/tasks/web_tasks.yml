@@ -1,0 +1,16 @@
+---
+- name: Install and start firewalld
+  import_tasks: install_and_enable.yml
+  vars:
+    package: firewalld
+    service: firewalld
+
+- name: Tuning configuration installed
+  copy:
+    src: files/tune.conf
+    dest: /etc/httpd/conf.d/tune.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart httpd
