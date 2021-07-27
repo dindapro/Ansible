@@ -1,0 +1,44 @@
+    - name: 1 Correct partitions exist on /dev/vdb
+      parted:
+        device: /dev/vdb
+        state: present
+        number: "{{ item.number }}"
+        part_start: "{{ item.start }}"
+        part_end: "{{ item.end }}"
+      loop: "{{ partitions }}"
+
+    - name: 2 Ensure Volume Groups Exist
+      lvg:
+        vg: "{{ item.name }}"
+        pvs: "{{ item.devices }}"
+      loop: "{{  volume_groups }}"
+
+    - name: 3 Create each Logical Volume (LV) if needed
+      lvol:
+        vg: "{{ item.vgroup }}"
+        lv: "{{ item.name }}"
+        size: "{{ item.size }}"
+      loop: "{{ logical_volumes }}"
+
+    - name: 4 Ensure XFS Filesystem exists on each LV
+      filesystem:
+        dev: "/dev/{{ item.vgroup }}/{{ item.name }}"
+        fstype: xfs
+      loop: "{{ logical_volumes }}"
+
+    - name: 5 Ensure the correct capacity for each LV
+      lvol:
+        vg: "{{ item.vgroup }}"
+        lv: "{{ item.name }}"
+        size: "{{ item.size }}"
+        resizefs: yes
+        force: yes
+      loop: "{{ logical_volumes }}"
+
+    - name: 6 Each Logical Volume is mounted
+      mount:
+        path: "{{ item.mount_path }}"
+        src: "/dev/{{ item.vgroup }}/{{ item.name }}"
+        fstype: xfs
+        state: mounted
+      loop: "{{ logical_volumes }}"
