@@ -1,0 +1,5 @@
+[samba_servers]
+redhat2.mshome.net
+
+[mailrelay]
+redhat2.mshome.net

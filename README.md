@@ -1,5 +1,11 @@
 # Ansible Training 
 
+## enable environment
+
+```bash
+source ~/virtualenvs/ansible/bin/activate
+```
+
 ## Setup keygen
 
 generate keygen

@@ -1,0 +1,21 @@
+# {{ random_var }}
+    [global]
+      workgroup = KAMANSI
+      server string = Samba Server Version %v
+      log file = /var/log/samba/log.%m
+      max log size = 50
+      security = user
+      passdb backend = tdbsam
+      load printers = yes
+      cups options = raw
+    [homes]
+      comment = Home Directory
+      browseable = no
+      writable = yes
+    [printers]
+      comment = All printers
+      path = /var/spool/samba
+      browseable = no
+      writable = no
+      printable = yes
+
