@@ -4,6 +4,14 @@
 
 ```bash
 source ~/virtualenvs/ansible/bin/activate
+
+
+```
+
+## Edit 
+```powershell
+Get-NetIPInterface | where {$_.InterfaceAlias -eq 'vEthernet (WSL)' -or $_.InterfaceAlias -eq 'vEthernet (Default Switch)'} | Set-NetIPInterface -Forwarding Enabled
+
 ```
 
 ## Setup keygen
