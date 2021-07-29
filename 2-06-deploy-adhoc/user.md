@@ -1,4 +1,6 @@
-[teguh@redhat1 deploy-adhoc]$ ansible-doc user
+## Documentation User 
+
+```bash
 > USER    (/usr/lib/python3.6/site-packages/ansible/modules/system/user.py)
 
         Manage user accounts and user attributes. For Windows targets, use the [win_user] module instead.
@@ -465,4 +467,4 @@ uid:
   type: int
   sample: 1044
 
-[teguh@redhat1 deploy-adhoc]$
+```

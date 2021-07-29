@@ -2,17 +2,17 @@
 
 ## CHECK SYNTAX
 ```bash
-[student@workstation playbook-basic]$ ansible-playbook --syntax-check site.yml
+$ ansible-playbook --syntax-check site.yml
 playbook: site.yml
 ```
 
 ## EXECUTE YML
 ```bash
-[student@workstation playbook-basic]$ ansible-playbook site.yml
+$ ansible-playbook site.yml
 ```
 
 ## Testing
 ```bash
-[teguh@redhat2 ~]$ curl redhat2.mshome.net
-this is simple page[teguh@redhat2 ~]$
+$ curl redhat2.mshome.net
+this is simple page
 ```
