@@ -1,0 +1,9 @@
+[control_node]
+redhat1.mshome.net
+[frontend]
+redhat2.mshome.net
+[backend]
+redhat3.mshome.net
+[app:children]
+frontend
+backend
