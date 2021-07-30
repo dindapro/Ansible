@@ -1,6 +1,6 @@
 ---
 - name: create user accounts for all our servers
-  hosts: devservers
+  hosts: redhat1.mshome.net
   become: True
   remote_user: devops
   vars_files:
