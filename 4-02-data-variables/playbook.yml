@@ -1,6 +1,6 @@
 ---
 - name: Deploy and start Apache HTTPD service
-  hosts: webserver
+  hosts: redhat1.mshome.net
   vars:
     web_pkg: httpd
     firewall_pkg: firewalld
@@ -43,10 +43,11 @@
         state: enabled
 
 - name: Verify the Apache service
-  hosts: localhost
+  hosts: redhat3.mshome.net
   become: false
   tasks:
     - name: Ensure the webserver is reachable
-      uri:
-        url: http://servera.lab.example.com
-        status_code: 200
+      uri: 
+        url: http://redhat1.mshome.net
+        status_code: '200'
+

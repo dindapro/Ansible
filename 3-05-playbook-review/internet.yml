@@ -1,6 +1,6 @@
 ---
 - name: enable internet services
-  hosts: serverb.lab.example.com
+  hosts: redhat2.mshome.net
   become: yes
   tasks:
     - name: Latest version of all required packages installed
@@ -35,14 +35,14 @@
         state: started
     - name: test php page is installed
       get_url: 
-        url: "http://materials.example.com/labs/playbook-review/index.php"
+        url: "https://raw.githubusercontent.com/drnic/php-helloworld/master/index.php"
         dest: /var/www/html/index.php
         mode: 0644
 - name: Test internet web server
-  hosts: localhost
+  hosts: redhat3.mshome.net
   become: no
   tasks:
     - name: connect to internet web server
       uri: 
-        url: http://serverb.lab.example.com
+        url: http://redhat2.mshome.net
         status_code: 200
