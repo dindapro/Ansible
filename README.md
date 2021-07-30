@@ -3,9 +3,10 @@
 ## enable environment
 
 ```bash
+sudo umount /mnt/d
+sudo mount -t drvfs D: /mnt/d -o metadata,uid=1000,gid=1000,umask=22,fmask=111,wfd=8
+mount -l
 source ~/virtualenvs/ansible/bin/activate
-
-
 ```
 
 ## Edit 
