@@ -1,6 +1,6 @@
 ---
 - name: MariaDB server is running
-  hosts: database_dev
+  hosts: redhat1.mshome.net
   vars:
     mariadb_packages:
       - mariadb-server

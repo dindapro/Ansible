@@ -1,6 +1,6 @@
 ---
 - name: MariaDB server is installed
-  hosts: databases
+  hosts: redhat1.mshome.net
   vars:
     db_packages:
       - mariadb-server
