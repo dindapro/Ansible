@@ -1,10 +1,6 @@
 ---
 - name: Install and configure web service 
-  host:
-    - servera.lab.example.com
-    - serverb.lab.example.com
-    - serverc.lab.example.com
-    - serverd.lab.example.com
+  hosts: server*.lab.example.com
   tasks:
 
     - name: Install httpd
