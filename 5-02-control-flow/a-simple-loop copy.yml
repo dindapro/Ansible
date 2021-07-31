@@ -1,0 +1,8 @@
+- name: Postfix is running
+  service:
+    name: postfix
+    state: started
+- name: Dovecot is running
+  service:
+    name: dovecot
+    state: started

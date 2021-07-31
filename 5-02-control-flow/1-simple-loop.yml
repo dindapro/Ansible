@@ -1,0 +1,16 @@
+---
+- name: simple loop
+  hosts: redhat1.mshome.net
+
+
+
+
+  tasks:
+    - name: Postfix is running
+      service:
+        name: postfix
+        state: started
+    - name: Dovecot is running
+      service:
+        name: dovecot
+        state: started

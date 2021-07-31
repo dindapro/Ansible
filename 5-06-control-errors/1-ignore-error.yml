@@ -1,0 +1,7 @@
+
+
+- name: Latest version of notapkg is installed
+  yum:
+    name: notapkg
+    state: latest
+  ignore_errors: yes
