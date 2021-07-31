@@ -109,7 +109,7 @@
     db2.example.com
 ```
 
-###
+### advance
 
 ```bash
 [student@workstation projects-host]$ ansible 'prod,172*,*lab*' -i inventory1 \
@@ -128,6 +128,7 @@
     s2.lab.example.com
 ```
 
+### advance
 
 ```bash 
 [student@workstation projects-host]$ ansible 'db,&london' -i inventory1 \

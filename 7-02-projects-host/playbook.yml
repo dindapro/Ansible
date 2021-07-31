@@ -1,6 +1,6 @@
 ---
 - name: Resolve host patterns
-  hosts:
+  hosts :
   tasks:
     - name: Display managed host name
       debug:
