@@ -1,0 +1,339 @@
+Jul 19 03:50:12 rhel83 polkitd[910]: Loading rules from directory /etc/polkit-1/rules.d
+Jul 19 03:50:12 rhel83 polkitd[910]: Loading rules from directory /usr/share/polkit-1/rules.d
+Jul 19 03:50:12 rhel83 polkitd[910]: Finished loading, compiling and executing 2 rules
+Jul 19 03:50:12 rhel83 polkitd[910]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+Jul 19 03:50:13 rhel83 sshd[970]: Server listening on 0.0.0.0 port 22.
+Jul 19 03:50:13 rhel83 sshd[970]: Server listening on :: port 22.
+Jul 19 03:53:45 rhel83 unix_chkpwd[5097]: password check failed for user (root)
+Jul 19 03:53:45 rhel83 login[993]: pam_unix(login:auth): authentication failure; logname=LOGIN uid=0 euid=0 tty=tty1 ruser= rhost=  user=root
+Jul 19 03:53:47 rhel83 login[993]: FAILED LOGIN 1 FROM tty1 FOR root, Authentication failure
+Jul 19 03:53:51 rhel83 systemd[5102]: pam_unix(systemd-user:session): session opened for user root by (uid=0)
+Jul 19 03:53:51 rhel83 login[993]: pam_unix(login:session): session opened for user root by LOGIN(uid=0)
+Jul 19 03:53:51 rhel83 login[993]: ROOT LOGIN ON tty1
+Jul 19 03:56:47 rhel83 sshd[5137]: Accepted password for root from 172.27.80.1 port 65134 ssh2
+Jul 19 03:56:47 rhel83 sshd[5137]: pam_unix(sshd:session): session opened for user root by (uid=0)
+Jul 19 03:56:47 rhel83 sshd[5141]: Accepted password for root from 172.27.80.1 port 65135 ssh2
+Jul 19 03:56:48 rhel83 sshd[5141]: pam_unix(sshd:session): session opened for user root by (uid=0)
+Jul 30 03:58:27 rhel83 polkitd[868]: Loading rules from directory /etc/polkit-1/rules.d
+Jul 30 03:58:27 rhel83 polkitd[868]: Loading rules from directory /usr/share/polkit-1/rules.d
+Jul 30 03:58:27 rhel83 polkitd[868]: Finished loading, compiling and executing 2 rules
+Jul 30 03:58:27 rhel83 polkitd[868]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+Jul 30 03:58:28 rhel83 sshd[920]: Server listening on 0.0.0.0 port 22.
+Jul 30 03:58:28 rhel83 sshd[920]: Server listening on :: port 22.
+Jul 30 03:58:55 rhel83 systemd[1484]: pam_unix(systemd-user:session): session opened for user root by (uid=0)
+Jul 30 03:58:55 rhel83 login[942]: pam_unix(login:session): session opened for user root by LOGIN(uid=0)
+Jul 30 03:58:55 rhel83 login[942]: ROOT LOGIN ON tty1
+Jul 30 03:59:36 redhat1 polkitd[874]: Loading rules from directory /etc/polkit-1/rules.d
+Jul 30 03:59:36 redhat1 polkitd[874]: Loading rules from directory /usr/share/polkit-1/rules.d
+Jul 30 03:59:36 redhat1 polkitd[874]: Finished loading, compiling and executing 2 rules
+Jul 30 03:59:36 redhat1 polkitd[874]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+Jul 30 03:59:37 redhat1 sshd[927]: Server listening on 0.0.0.0 port 22.
+Jul 30 03:59:37 redhat1 sshd[927]: Server listening on :: port 22.
+Jul 30 03:59:47 redhat1 systemd[1486]: pam_unix(systemd-user:session): session opened for user teguh by (uid=0)
+Jul 30 03:59:47 redhat1 login[945]: pam_unix(login:session): session opened for user teguh by LOGIN(uid=0)
+Jul 30 03:59:47 redhat1 login[945]: LOGIN ON tty1 BY teguh
+Jul 30 04:00:07 redhat1 sudo[1529]:   teguh : TTY=tty1 ; PWD=/home/teguh ; USER=root ; COMMAND=/bin/su -
+Jul 30 04:00:07 redhat1 sudo[1529]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:00:07 redhat1 sudo[1529]: pam_unix(sudo:session): session opened for user root by teguh(uid=0)
+Jul 30 04:00:07 redhat1 su[1533]: pam_systemd(su-l:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:00:07 redhat1 su[1533]: pam_unix(su-l:session): session opened for user root by teguh(uid=0)
+Jul 30 04:02:04 redhat1 sshd[1574]: Connection closed by authenticating user teguh 172.19.2.248 port 44948 [preauth]
+Jul 30 04:02:04 redhat1 sshd[1576]: Connection closed by authenticating user teguh 172.19.2.248 port 44950 [preauth]
+Jul 30 04:02:10 redhat1 sshd[1578]: Accepted password for teguh from 172.19.2.248 port 44952 ssh2
+Jul 30 04:02:10 redhat1 sshd[1578]: pam_unix(sshd:session): session opened for user teguh by (uid=0)
+Jul 30 04:02:10 redhat1 sshd[1582]: Received disconnect from 172.19.2.248 port 44952:11: disconnected by user
+Jul 30 04:02:10 redhat1 sshd[1582]: Disconnected from user teguh 172.19.2.248 port 44952
+Jul 30 04:02:10 redhat1 sshd[1578]: pam_unix(sshd:session): session closed for user teguh
+Jul 30 04:02:19 redhat1 sshd[1604]: Accepted publickey for teguh from 172.19.2.248 port 44954 ssh2: RSA SHA256:ix6/w5lFUnxKofcyFon6bega4kaC8ggDFrRLBFFmhQ0
+Jul 30 04:02:19 redhat1 sshd[1604]: pam_unix(sshd:session): session opened for user teguh by (uid=0)
+Jul 30 04:02:20 redhat1 sshd[1607]: Received disconnect from 172.19.2.248 port 44954:11: disconnected by user
+Jul 30 04:02:20 redhat1 sshd[1607]: Disconnected from user teguh 172.19.2.248 port 44954
+Jul 30 04:02:21 redhat1 sshd[1604]: pam_unix(sshd:session): session closed for user teguh
+Jul 30 04:03:04 redhat1 sshd[1632]: Invalid user devops from 172.19.2.248 port 44962
+Jul 30 04:03:04 redhat1 sshd[1632]: Connection closed by invalid user devops 172.19.2.248 port 44962 [preauth]
+Jul 30 04:03:49 redhat1 sshd[1634]: Invalid user devops from 172.19.2.248 port 44964
+Jul 30 04:03:49 redhat1 sshd[1634]: Connection closed by invalid user devops 172.19.2.248 port 44964 [preauth]
+Jul 30 04:04:13 redhat1 sshd[1636]: Accepted publickey for teguh from 172.19.2.248 port 44966 ssh2: RSA SHA256:ix6/w5lFUnxKofcyFon6bega4kaC8ggDFrRLBFFmhQ0
+Jul 30 04:04:13 redhat1 sshd[1636]: pam_unix(sshd:session): session opened for user teguh by (uid=0)
+Jul 30 04:04:13 redhat1 sudo[1747]:   teguh : a password is required ; TTY=pts/0 ; PWD=/home/teguh ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-qhluadvsrmmgddtmfavzkqjgaqtxoqwb ; /usr/libexec/platform-python /home/teguh/.ansible/tmp/ansible-tmp-1627632252.2938097-962-125934906689454/AnsiballZ_ping.py
+Jul 30 04:04:36 redhat1 sudo[1869]:   teguh : TTY=pts/0 ; PWD=/home/teguh ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-nwbupftyimdltxcwmosetkfutdyfbuud ; /usr/libexec/platform-python /home/teguh/.ansible/tmp/ansible-tmp-1627632274.4957805-991-42794450262430/AnsiballZ_ping.py
+Jul 30 04:04:36 redhat1 sudo[1869]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:04:36 redhat1 sudo[1869]: pam_unix(sudo:session): session opened for user root by teguh(uid=0)
+Jul 30 04:04:36 redhat1 sudo[1869]: pam_unix(sudo:session): session closed for user root
+Jul 30 04:04:52 redhat1 sudo[1996]:   teguh : TTY=pts/0 ; PWD=/home/teguh ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-ueklegsmyqwzbhaziolqpgzqimrfvadr ; /usr/libexec/platform-python /home/teguh/.ansible/tmp/ansible-tmp-1627632291.32198-1008-49515542025736/AnsiballZ_user.py
+Jul 30 04:04:52 redhat1 sudo[1996]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:04:52 redhat1 sudo[1996]: pam_unix(sudo:session): session opened for user root by teguh(uid=0)
+Jul 30 04:04:53 redhat1 useradd[2004]: new group: name=devops, GID=4000
+Jul 30 04:04:53 redhat1 useradd[2004]: new user: name=devops, UID=4000, GID=4000, home=/home/devops, shell=/bin/bash
+Jul 30 04:04:53 redhat1 sudo[1996]: pam_unix(sudo:session): session closed for user root
+Jul 30 04:05:00 redhat1 sshd[2025]: Connection closed by authenticating user devops 172.19.2.248 port 44970 [preauth]
+Jul 30 04:05:13 redhat1 sshd[2028]: Connection closed by authenticating user devops 172.19.2.248 port 44972 [preauth]
+Jul 30 04:05:13 redhat1 sshd[2030]: Connection closed by authenticating user devops 172.19.2.248 port 44974 [preauth]
+Jul 30 04:05:16 redhat1 sshd[2032]: Accepted password for devops from 172.19.2.248 port 44976 ssh2
+Jul 30 04:05:16 redhat1 systemd[2037]: pam_unix(systemd-user:session): session opened for user devops by (uid=0)
+Jul 30 04:05:16 redhat1 sshd[2032]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Jul 30 04:05:16 redhat1 sshd[2047]: Received disconnect from 172.19.2.248 port 44976:11: disconnected by user
+Jul 30 04:05:16 redhat1 sshd[2047]: Disconnected from user devops 172.19.2.248 port 44976
+Jul 30 04:05:16 redhat1 sshd[2032]: pam_unix(sshd:session): session closed for user devops
+Jul 30 04:05:16 redhat1 systemd[2040]: pam_unix(systemd-user:session): session closed for user devops
+Jul 30 04:05:20 redhat1 sshd[2078]: Accepted publickey for devops from 172.19.2.248 port 44978 ssh2: RSA SHA256:ix6/w5lFUnxKofcyFon6bega4kaC8ggDFrRLBFFmhQ0
+Jul 30 04:05:20 redhat1 systemd[2082]: pam_unix(systemd-user:session): session opened for user devops by (uid=0)
+Jul 30 04:05:20 redhat1 sshd[2078]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Jul 30 04:05:53 redhat1 sshd[1639]: Received disconnect from 172.19.2.248 port 44966:11: disconnected by user
+Jul 30 04:05:53 redhat1 sshd[1639]: Disconnected from user teguh 172.19.2.248 port 44966
+Jul 30 04:05:53 redhat1 sshd[1636]: pam_unix(sshd:session): session closed for user teguh
+Jul 30 04:06:21 redhat1 sshd[2092]: Received disconnect from 172.19.2.248 port 44978:11: disconnected by user
+Jul 30 04:06:21 redhat1 sshd[2092]: Disconnected from user devops 172.19.2.248 port 44978
+Jul 30 04:06:21 redhat1 sshd[2078]: pam_unix(sshd:session): session closed for user devops
+Jul 30 04:06:21 redhat1 systemd[2085]: pam_unix(systemd-user:session): session closed for user devops
+Jul 30 04:06:58 redhat1 sshd[2224]: Accepted publickey for devops from 172.19.2.248 port 44980 ssh2: RSA SHA256:ix6/w5lFUnxKofcyFon6bega4kaC8ggDFrRLBFFmhQ0
+Jul 30 04:06:58 redhat1 systemd[2228]: pam_unix(systemd-user:session): session opened for user devops by (uid=0)
+Jul 30 04:06:58 redhat1 sshd[2224]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Jul 30 04:06:58 redhat1 sudo[2345]:  devops : user NOT in sudoers ; TTY=pts/0 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-dsatgbnenlughihavsqyupwioplkxkxx ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627632417.2540233-1101-201871964249200/AnsiballZ_ping.py
+Jul 30 04:07:58 redhat1 sshd[2237]: Received disconnect from 172.19.2.248 port 44980:11: disconnected by user
+Jul 30 04:07:58 redhat1 sshd[2237]: Disconnected from user devops 172.19.2.248 port 44980
+Jul 30 04:07:58 redhat1 sshd[2224]: pam_unix(sshd:session): session closed for user devops
+Jul 30 04:13:39 redhat1 sshd[2396]: Accepted publickey for teguh from 172.19.2.248 port 45044 ssh2: RSA SHA256:ix6/w5lFUnxKofcyFon6bega4kaC8ggDFrRLBFFmhQ0
+Jul 30 04:13:39 redhat1 sshd[2396]: pam_unix(sshd:session): session opened for user teguh by (uid=0)
+Jul 30 04:13:39 redhat1 sudo[2507]:   teguh : TTY=pts/0 ; PWD=/home/teguh ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-mglmeupmjrezuevuhvjufxanrhajwyav ; /usr/libexec/platform-python /home/teguh/.ansible/tmp/ansible-tmp-1627632817.7867942-1178-152342246964888/AnsiballZ_setup.py
+Jul 30 04:13:39 redhat1 sudo[2507]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:13:39 redhat1 sudo[2507]: pam_unix(sudo:session): session opened for user root by teguh(uid=0)
+Jul 30 04:13:40 redhat1 sudo[2507]: pam_unix(sudo:session): session closed for user root
+Jul 30 04:13:40 redhat1 sudo[2643]:   teguh : TTY=pts/0 ; PWD=/home/teguh ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-xzicltshccolisldpifgocdkpzfkfpts ; /usr/libexec/platform-python /home/teguh/.ansible/tmp/ansible-tmp-1627632818.878565-1192-15656614045585/AnsiballZ_group.py
+Jul 30 04:13:40 redhat1 sudo[2643]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:13:40 redhat1 sudo[2643]: pam_unix(sudo:session): session opened for user root by teguh(uid=0)
+Jul 30 04:13:40 redhat1 sudo[2643]: pam_unix(sudo:session): session closed for user root
+Jul 30 04:13:40 redhat1 sudo[2743]:   teguh : TTY=pts/0 ; PWD=/home/teguh ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-xnrohpyzkoblxivbvrybuciyygrhcvwe ; /usr/libexec/platform-python /home/teguh/.ansible/tmp/ansible-tmp-1627632819.302698-1201-214451367008169/AnsiballZ_lineinfile.py
+Jul 30 04:13:40 redhat1 sudo[2743]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:13:40 redhat1 sudo[2743]: pam_unix(sudo:session): session opened for user root by teguh(uid=0)
+Jul 30 04:13:41 redhat1 sudo[2743]: pam_unix(sudo:session): session closed for user root
+Jul 30 04:13:41 redhat1 sudo[2842]:   teguh : TTY=pts/0 ; PWD=/home/teguh ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-xkzpskcvezhkoeobvdngbnejcdzirqaa ; /usr/libexec/platform-python /home/teguh/.ansible/tmp/ansible-tmp-1627632819.8055627-1210-200947993875718/AnsiballZ_user.py
+Jul 30 04:13:41 redhat1 sudo[2842]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:13:41 redhat1 sudo[2842]: pam_unix(sudo:session): session opened for user root by teguh(uid=0)
+Jul 30 04:13:41 redhat1 usermod[2849]: add 'devops' to group 'wheel'
+Jul 30 04:13:41 redhat1 usermod[2849]: add 'devops' to shadow group 'wheel'
+Jul 30 04:13:41 redhat1 sudo[2842]: pam_unix(sudo:session): session closed for user root
+Jul 30 04:14:11 redhat1 sshd[2870]: Accepted password for teguh from 172.22.144.1 port 61933 ssh2
+Jul 30 04:14:11 redhat1 sshd[2870]: pam_unix(sshd:session): session opened for user teguh by (uid=0)
+Jul 30 04:14:12 redhat1 sshd[2874]: Accepted password for teguh from 172.22.144.1 port 61934 ssh2
+Jul 30 04:14:12 redhat1 sshd[2874]: pam_unix(sshd:session): session opened for user teguh by (uid=0)
+Jul 30 04:14:16 redhat1 sudo[2917]:   teguh : TTY=pts/0 ; PWD=/home/teguh ; USER=root ; COMMAND=/bin/su -
+Jul 30 04:14:16 redhat1 sudo[2917]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:14:16 redhat1 sudo[2917]: pam_unix(sudo:session): session opened for user root by teguh(uid=0)
+Jul 30 04:14:16 redhat1 su[2919]: pam_systemd(su-l:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:14:16 redhat1 su[2919]: pam_unix(su-l:session): session opened for user root by teguh(uid=0)
+Jul 30 04:14:21 redhat1 su[2939]: pam_systemd(su:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:14:21 redhat1 su[2939]: pam_unix(su:session): session opened for user devops by teguh(uid=0)
+Jul 30 04:14:32 redhat1 su[2939]: pam_unix(su:session): session closed for user devops
+Jul 30 04:14:35 redhat1 su[2919]: pam_unix(su-l:session): session closed for user root
+Jul 30 04:14:35 redhat1 sudo[2917]: pam_unix(sudo:session): session closed for user root
+Jul 30 04:14:41 redhat1 sshd[2399]: Received disconnect from 172.19.2.248 port 45044:11: disconnected by user
+Jul 30 04:14:41 redhat1 sshd[2399]: Disconnected from user teguh 172.19.2.248 port 45044
+Jul 30 04:14:41 redhat1 sshd[2396]: pam_unix(sshd:session): session closed for user teguh
+Jul 30 04:14:58 redhat1 sudo[2968]:   teguh : TTY=pts/0 ; PWD=/home/teguh ; USER=root ; COMMAND=/sbin/visudo
+Jul 30 04:14:58 redhat1 sudo[2968]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:14:58 redhat1 sudo[2968]: pam_unix(sudo:session): session opened for user root by teguh(uid=0)
+Jul 30 04:15:23 redhat1 sudo[2968]: pam_unix(sudo:session): session closed for user root
+Jul 30 04:16:10 redhat1 sshd[2973]: Accepted publickey for devops from 172.19.2.248 port 45048 ssh2: RSA SHA256:ix6/w5lFUnxKofcyFon6bega4kaC8ggDFrRLBFFmhQ0
+Jul 30 04:16:10 redhat1 systemd[2977]: pam_unix(systemd-user:session): session opened for user devops by (uid=0)
+Jul 30 04:16:10 redhat1 sshd[2973]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Jul 30 04:16:10 redhat1 sudo[3096]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-xyvlhkuzunwscjsmalbkwyuwuwxjmmpz ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627632969.2314072-1240-199468981344698/AnsiballZ_ping.py
+Jul 30 04:16:10 redhat1 sudo[3096]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 30 04:16:10 redhat1 sudo[3096]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 30 04:16:10 redhat1 sudo[3096]: pam_unix(sudo:session): session closed for user root
+Jul 30 04:17:11 redhat1 sshd[2988]: Received disconnect from 172.19.2.248 port 45048:11: disconnected by user
+Jul 30 04:17:11 redhat1 sshd[2988]: Disconnected from user devops 172.19.2.248 port 45048
+Jul 30 04:17:11 redhat1 sshd[2973]: pam_unix(sshd:session): session closed for user devops
+Jul 30 04:17:11 redhat1 systemd[2980]: pam_unix(systemd-user:session): session closed for user devops
+Jul 31 02:05:18 redhat1 polkitd[872]: Loading rules from directory /etc/polkit-1/rules.d
+Jul 31 02:05:18 redhat1 polkitd[872]: Loading rules from directory /usr/share/polkit-1/rules.d
+Jul 31 02:05:18 redhat1 polkitd[872]: Finished loading, compiling and executing 2 rules
+Jul 31 02:05:18 redhat1 polkitd[872]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+Jul 31 02:05:19 redhat1 sshd[923]: Server listening on 0.0.0.0 port 22.
+Jul 31 02:05:19 redhat1 sshd[923]: Server listening on :: port 22.
+Jul 31 02:05:53 redhat1 sshd[1486]: Accepted publickey for devops from 172.19.2.248 port 45858 ssh2: RSA SHA256:ix6/w5lFUnxKofcyFon6bega4kaC8ggDFrRLBFFmhQ0
+Jul 31 02:05:53 redhat1 systemd[1490]: pam_unix(systemd-user:session): session opened for user devops by (uid=0)
+Jul 31 02:05:53 redhat1 sshd[1486]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Jul 31 02:05:54 redhat1 sudo[1608]:  devops : TTY=pts/0 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-jgmtphczdvdwmwixhacomwujrhjivvrg ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627711553.8075156-7186-78382936917298/AnsiballZ_setup.py
+Jul 31 02:05:54 redhat1 sudo[1608]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 02:05:54 redhat1 sudo[1608]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 02:05:54 redhat1 sudo[1608]: pam_unix(sudo:session): session closed for user root
+Jul 31 02:05:55 redhat1 sudo[1742]:  devops : TTY=pts/0 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-ocdmnzxtfzzwibqqygvldamqonesrnqj ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627711554.870016-7203-94963812771327/AnsiballZ_dnf.py
+Jul 31 02:05:55 redhat1 sudo[1742]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 02:05:55 redhat1 sudo[1742]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 02:06:31 redhat1 groupadd[1776]: group added to /etc/group: name=mysql, GID=27
+Jul 31 02:06:31 redhat1 groupadd[1776]: group added to /etc/gshadow: name=mysql
+Jul 31 02:06:31 redhat1 groupadd[1776]: new group: name=mysql, GID=27
+Jul 31 02:06:31 redhat1 useradd[1782]: new user: name=mysql, UID=27, GID=27, home=/var/lib/mysql, shell=/sbin/nologin
+Jul 31 02:06:34 redhat1 sudo[1742]: pam_unix(sudo:session): session closed for user root
+Jul 31 02:06:34 redhat1 sudo[4561]:  devops : TTY=pts/0 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-asjmvvfeevynlvncfocdlzuygiljljoe ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627711594.3374758-7269-6172721646127/AnsiballZ_systemd.py
+Jul 31 02:06:34 redhat1 sudo[4561]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 02:06:34 redhat1 sudo[4561]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 02:06:38 redhat1 sudo[4561]: pam_unix(sudo:session): session closed for user root
+Jul 31 02:06:38 redhat1 sudo[12789]:  devops : TTY=pts/0 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-nluwwzyxfpmapifqncgctotocpuhlctw ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627711598.4069278-7284-6506492405287/AnsiballZ_get_url.py
+Jul 31 02:06:38 redhat1 sudo[12789]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 02:06:38 redhat1 sudo[12789]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 02:06:40 redhat1 sudo[12789]: pam_unix(sudo:session): session closed for user root
+Jul 31 02:06:40 redhat1 sudo[12887]:  devops : TTY=pts/0 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-lnamxwayepzgazgbnenllkhyccfiuctr ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627711600.5781326-7296-37286663546306/AnsiballZ_systemd.py
+Jul 31 02:06:40 redhat1 sudo[12887]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 02:06:40 redhat1 sudo[12887]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 02:06:42 redhat1 sudo[12887]: pam_unix(sudo:session): session closed for user root
+Jul 31 02:06:42 redhat1 sudo[13118]:  devops : TTY=pts/0 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-igonsxvbuchtlifdnsjibhpuyzppvczd ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627711602.4069877-7308-207738427434954/AnsiballZ_mysql_user.py
+Jul 31 02:06:42 redhat1 sudo[13118]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 02:06:42 redhat1 sudo[13118]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 02:06:43 redhat1 sudo[13118]: pam_unix(sudo:session): session closed for user root
+Jul 31 02:07:43 redhat1 sshd[1500]: Received disconnect from 172.19.2.248 port 45858:11: disconnected by user
+Jul 31 02:07:43 redhat1 sshd[1500]: Disconnected from user devops 172.19.2.248 port 45858
+Jul 31 02:07:43 redhat1 sshd[1486]: pam_unix(sshd:session): session closed for user devops
+Jul 31 04:20:04 redhat1 sshd[13246]: Accepted password for teguh from 172.22.144.1 port 50980 ssh2
+Jul 31 04:20:04 redhat1 systemd[13253]: pam_unix(systemd-user:session): session opened for user teguh by (uid=0)
+Jul 31 04:20:04 redhat1 sshd[13246]: pam_unix(sshd:session): session opened for user teguh by (uid=0)
+Jul 31 04:20:04 redhat1 sshd[13250]: Accepted password for teguh from 172.22.144.1 port 50981 ssh2
+Jul 31 04:20:04 redhat1 sshd[13250]: pam_unix(sshd:session): session opened for user teguh by (uid=0)
+Jul 31 04:20:38 redhat1 sudo[13305]:   teguh : TTY=pts/0 ; PWD=/home/teguh ; USER=root ; COMMAND=/bin/su -
+Jul 31 04:20:38 redhat1 sudo[13305]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:20:38 redhat1 sudo[13305]: pam_unix(sudo:session): session opened for user root by teguh(uid=0)
+Jul 31 04:20:38 redhat1 su[13307]: pam_systemd(su-l:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:20:38 redhat1 su[13307]: pam_unix(su-l:session): session opened for user root by teguh(uid=0)
+Jul 31 04:20:44 redhat1 su[13307]: pam_unix(su-l:session): session closed for user root
+Jul 31 04:20:44 redhat1 sudo[13305]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:25:22 redhat1 sshd[13332]: Accepted password for teguh from 172.22.144.1 port 58471 ssh2
+Jul 31 04:25:22 redhat1 sshd[13332]: pam_unix(sshd:session): session opened for user teguh by (uid=0)
+Jul 31 04:25:23 redhat1 sshd[13332]: pam_unix(sshd:session): session closed for user teguh
+Jul 31 04:30:38 redhat1 sshd[13452]: Accepted publickey for devops from 172.19.2.248 port 47006 ssh2: RSA SHA256:ix6/w5lFUnxKofcyFon6bega4kaC8ggDFrRLBFFmhQ0
+Jul 31 04:30:38 redhat1 systemd[13456]: pam_unix(systemd-user:session): session opened for user devops by (uid=0)
+Jul 31 04:30:38 redhat1 sshd[13452]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Jul 31 04:30:38 redhat1 sudo[13576]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-jftphhqjhjpgcyxpjbxbjexqztlntxxz ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720238.476464-20996-114855240044403/AnsiballZ_setup.py
+Jul 31 04:30:38 redhat1 sudo[13576]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:30:38 redhat1 sudo[13576]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:30:39 redhat1 sudo[13576]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:30:39 redhat1 sudo[13710]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-jwobwvlpfdwmdzqteaggqfgtcugezuxd ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720239.45365-21012-120328267872186/AnsiballZ_dnf.py
+Jul 31 04:30:39 redhat1 sudo[13710]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:30:39 redhat1 sudo[13710]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:30:50 redhat1 groupadd[13731]: group added to /etc/group: name=apache, GID=48
+Jul 31 04:30:50 redhat1 groupadd[13731]: group added to /etc/gshadow: name=apache
+Jul 31 04:30:50 redhat1 groupadd[13731]: new group: name=apache, GID=48
+Jul 31 04:30:50 redhat1 useradd[13738]: new user: name=apache, UID=48, GID=48, home=/usr/share/httpd, shell=/sbin/nologin
+Jul 31 04:30:53 redhat1 sudo[13710]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:30:53 redhat1 sudo[14396]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-zaijuafisryesslrniroiofiohwafmiq ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720253.5028422-21042-136109953128119/AnsiballZ_systemd.py
+Jul 31 04:30:53 redhat1 sudo[14396]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:30:53 redhat1 sudo[14396]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:30:54 redhat1 sudo[14396]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:30:54 redhat1 sudo[14740]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-gmtlshgwcbuebgckqyqbnomnbzmffcyz ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720254.5460563-21042-53857721719313/AnsiballZ_systemd.py
+Jul 31 04:30:54 redhat1 sudo[14740]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:30:54 redhat1 sudo[14740]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:30:54 redhat1 sudo[14740]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:30:55 redhat1 sudo[14840]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-qzyruhmfryaafhrvcyrisnzwvalvozey ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720254.961145-21061-241853418814733/AnsiballZ_file.py
+Jul 31 04:30:55 redhat1 sudo[14840]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:30:55 redhat1 sudo[14840]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:30:55 redhat1 sudo[14840]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:30:55 redhat1 sudo[14936]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-silmwsdurwpgbwrlerpelxtgbdpvdwlz ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720255.4364493-21074-88816451400387/AnsiballZ_firewalld.py
+Jul 31 04:30:55 redhat1 sudo[14936]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:30:55 redhat1 sudo[14936]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:30:55 redhat1 sudo[14936]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:30:56 redhat1 sudo[15032]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-qniaqejbbprgdcunoekfayflzwctgkgf ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720255.9964585-21074-190804499456881/AnsiballZ_firewalld.py
+Jul 31 04:30:56 redhat1 sudo[15032]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:30:56 redhat1 sudo[15032]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:30:56 redhat1 sudo[15032]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:31:56 redhat1 sshd[13468]: Received disconnect from 172.19.2.248 port 47006:11: disconnected by user
+Jul 31 04:31:56 redhat1 sshd[13468]: Disconnected from user devops 172.19.2.248 port 47006
+Jul 31 04:31:56 redhat1 sshd[13452]: pam_unix(sshd:session): session closed for user devops
+Jul 31 04:36:37 redhat1 sshd[15353]: Accepted publickey for devops from 172.19.2.248 port 47070 ssh2: RSA SHA256:ix6/w5lFUnxKofcyFon6bega4kaC8ggDFrRLBFFmhQ0
+Jul 31 04:36:37 redhat1 systemd[15357]: pam_unix(systemd-user:session): session opened for user devops by (uid=0)
+Jul 31 04:36:37 redhat1 sshd[15353]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Jul 31 04:36:38 redhat1 sudo[15474]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-ogclvjjptoscludowbdbwnvrmfamarle ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720597.980808-21657-73314273889566/AnsiballZ_setup.py
+Jul 31 04:36:38 redhat1 sudo[15474]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:38 redhat1 sudo[15474]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:38 redhat1 sudo[15474]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:39 redhat1 sudo[15608]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-iqrrjptkqcdlwlqlokcbmcrswvcardxh ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720598.984738-21676-69611451753812/AnsiballZ_dnf.py
+Jul 31 04:36:39 redhat1 sudo[15608]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:39 redhat1 sudo[15608]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:44 redhat1 sudo[15608]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:45 redhat1 sudo[15713]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-tlxjdmgebeacxhfmmgtkjxobrxtwgzcz ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720604.8147252-21691-276479731292804/AnsiballZ_systemd.py
+Jul 31 04:36:45 redhat1 sudo[15713]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:45 redhat1 sudo[15713]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:45 redhat1 sudo[15713]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:45 redhat1 sudo[15813]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-szbovgfwkaufgsxoxakizgsftsysaazl ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720605.4034438-21691-212449588098542/AnsiballZ_systemd.py
+Jul 31 04:36:45 redhat1 sudo[15813]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:45 redhat1 sudo[15813]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:45 redhat1 sudo[15813]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:46 redhat1 sudo[15913]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-qnikqtmpbjaveyixvwbywxpzphmndpwq ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720605.813375-21710-257956997164224/AnsiballZ_file.py
+Jul 31 04:36:46 redhat1 sudo[15913]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:46 redhat1 sudo[15913]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:46 redhat1 sudo[15913]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:46 redhat1 sudo[16108]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-uoloumnyftfdqhprblhmgetgeltuetth ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720606.2313848-21719-261621308999633/AnsiballZ_stat.py
+Jul 31 04:36:46 redhat1 sudo[16108]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:46 redhat1 sudo[16108]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:46 redhat1 sudo[16108]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:46 redhat1 sudo[16160]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-cwuctsydhnloyzyhqtxevfwuqwfwuxyo ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720606.2313848-21719-261621308999633/AnsiballZ_stat.py
+Jul 31 04:36:46 redhat1 sudo[16160]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:46 redhat1 sudo[16160]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:46 redhat1 sudo[16160]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:47 redhat1 sudo[16237]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-zdmbdxjlisjzqfpywdfhelctvjzekijy ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720606.2313848-21719-261621308999633/AnsiballZ_copy.py
+Jul 31 04:36:47 redhat1 sudo[16237]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:47 redhat1 sudo[16237]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:47 redhat1 sudo[16237]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:47 redhat1 sudo[16335]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-egtpeinhcqwtuuewjrrwlekbretvedan ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720607.2247813-21719-168961531846801/AnsiballZ_stat.py
+Jul 31 04:36:47 redhat1 sudo[16335]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:47 redhat1 sudo[16335]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:47 redhat1 sudo[16335]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:47 redhat1 sudo[16387]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-dkonnoeitqtmwlqnfouogtbcekmmriig ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720607.2247813-21719-168961531846801/AnsiballZ_stat.py
+Jul 31 04:36:47 redhat1 sudo[16387]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:47 redhat1 sudo[16387]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:47 redhat1 sudo[16387]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:47 redhat1 sudo[16464]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-olhuecwizrfcwpklqbdbkxtkawvmzbtf ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720607.2247813-21719-168961531846801/AnsiballZ_copy.py
+Jul 31 04:36:47 redhat1 sudo[16464]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:47 redhat1 sudo[16464]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:47 redhat1 sudo[16464]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:48 redhat1 sudo[16562]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-dmoexztgkxfkcxmqonwsobcovcahlfdz ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720607.979712-21719-236786997488477/AnsiballZ_stat.py
+Jul 31 04:36:48 redhat1 sudo[16562]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:48 redhat1 sudo[16562]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:48 redhat1 sudo[16562]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:48 redhat1 sudo[16614]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-bykdlytwbkwnfaovffxdlvcdmdtgspyz ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720607.979712-21719-236786997488477/AnsiballZ_stat.py
+Jul 31 04:36:48 redhat1 sudo[16614]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:48 redhat1 sudo[16614]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:48 redhat1 sudo[16614]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:48 redhat1 sudo[16693]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-phjqglgbzqyerrxtgjgtjvnwjpqcydxi ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720607.979712-21719-236786997488477/AnsiballZ_copy.py
+Jul 31 04:36:48 redhat1 sudo[16693]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:48 redhat1 sudo[16693]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:48 redhat1 sudo[16693]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:48 redhat1 sudo[16791]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-nmwhnhhpffxqoblfdblhppkuxepsstap ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720608.7420733-21719-244625234437486/AnsiballZ_stat.py
+Jul 31 04:36:48 redhat1 sudo[16791]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:48 redhat1 sudo[16791]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:48 redhat1 sudo[16791]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:49 redhat1 sudo[16843]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-wmwpocmriykoltjhqqysowifxtkmkpfz ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720608.7420733-21719-244625234437486/AnsiballZ_stat.py
+Jul 31 04:36:49 redhat1 sudo[16843]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:49 redhat1 sudo[16843]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:49 redhat1 sudo[16843]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:49 redhat1 sudo[16920]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-tonwqhuhhkqkwvwhasfpqbhriasfyukc ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720608.7420733-21719-244625234437486/AnsiballZ_copy.py
+Jul 31 04:36:49 redhat1 sudo[16920]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:49 redhat1 sudo[16920]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:49 redhat1 sudo[16920]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:49 redhat1 sudo[17018]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-gdrjjlliykfkoveodkubrbexfxmfinwc ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720609.5498614-21799-134999241406564/AnsiballZ_firewalld.py
+Jul 31 04:36:49 redhat1 sudo[17018]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:49 redhat1 sudo[17018]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:50 redhat1 sudo[17018]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:50 redhat1 sudo[17114]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-koqsegzqmclefjmsiolnghnudmqjymvs ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720610.0806465-21799-78024425944734/AnsiballZ_firewalld.py
+Jul 31 04:36:50 redhat1 sudo[17114]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:50 redhat1 sudo[17114]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:50 redhat1 sudo[17114]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:36:50 redhat1 sudo[17210]:  devops : TTY=pts/1 ; PWD=/home/devops ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-enwfxanjxfmhcgrzaxjagkhflmruqcrb ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627720610.5526884-21815-129087268030032/AnsiballZ_systemd.py
+Jul 31 04:36:50 redhat1 sudo[17210]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jul 31 04:36:50 redhat1 sudo[17210]: pam_unix(sudo:session): session opened for user root by devops(uid=0)
+Jul 31 04:36:51 redhat1 sudo[17210]: pam_unix(sudo:session): session closed for user root
+Jul 31 04:37:52 redhat1 sshd[15366]: Received disconnect from 172.19.2.248 port 47070:11: disconnected by user
+Jul 31 04:37:52 redhat1 sshd[15366]: Disconnected from user devops 172.19.2.248 port 47070
+Jul 31 04:37:52 redhat1 sshd[15353]: pam_unix(sshd:session): session closed for user devops
+Jul 31 04:37:52 redhat1 systemd[15360]: pam_unix(systemd-user:session): session closed for user devops
+Jul 31 05:56:08 redhat1 sshd[17508]: Connection closed by authenticating user root 172.19.2.248 port 47218 [preauth]
+Jul 31 05:57:00 redhat1 sshd[17512]: Connection closed by authenticating user root 172.19.2.248 port 47226 [preauth]
+Jul 31 05:57:01 redhat1 sshd[17514]: Connection closed by authenticating user root 172.19.2.248 port 47228 [preauth]
+Jul 31 05:57:07 redhat1 sshd[17516]: Accepted password for root from 172.19.2.248 port 47230 ssh2
+Jul 31 05:57:07 redhat1 systemd[17521]: pam_unix(systemd-user:session): session opened for user root by (uid=0)
+Jul 31 05:57:07 redhat1 sshd[17516]: pam_unix(sshd:session): session opened for user root by (uid=0)
+Jul 31 05:57:07 redhat1 sshd[17532]: Received disconnect from 172.19.2.248 port 47230:11: disconnected by user
+Jul 31 05:57:07 redhat1 sshd[17532]: Disconnected from user root 172.19.2.248 port 47230
+Jul 31 05:57:07 redhat1 sshd[17516]: pam_unix(sshd:session): session closed for user root
+Jul 31 05:57:10 redhat1 sshd[17559]: Accepted publickey for root from 172.19.2.248 port 47232 ssh2: RSA SHA256:ix6/w5lFUnxKofcyFon6bega4kaC8ggDFrRLBFFmhQ0
+Jul 31 05:57:10 redhat1 systemd[17563]: pam_unix(systemd-user:session): session opened for user root by (uid=0)
+Jul 31 05:57:10 redhat1 sshd[17559]: pam_unix(sshd:session): session opened for user root by (uid=0)
