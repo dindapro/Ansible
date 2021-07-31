@@ -19,11 +19,11 @@ packages:
 ssl_cert_dir: /etc/httpd/conf.d/ssl
 
 web_config_files:
-  - scr: server.key
+  - src: server.key
     dest: "{{ ssl_cert_dir }}"
-  - scr: server.crt
+  - src: server.crt
     dest: "{{ ssl_cert_dir }}"
-  - scr: ssl.conf
+  - src: ssl.conf
     dest: /etc/httpd/conf.d
-  - scr: index.html
+  - src: index.html
     dest: /var/www/html

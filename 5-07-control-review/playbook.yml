@@ -1,6 +1,6 @@
 ---
 - name: Playbook Control Lab
-  hosts: webservers
+  hosts: redhat1.mshome.net
   vars_files: vars.yml
   tasks:
     #Fail Fast Message
