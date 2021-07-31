@@ -21,6 +21,20 @@
       debug:
         var: motd
 
+    - name: Add a single line of text to a file
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        line: Banner /etc/issue.net
+        state: present
+
+    - name:  SELinux file context is set to defaults
+      file:
+        path: /etc/ssh/sshd_config
+        seuser: _default
+        serole: _default
+        setype: _default
+        selevel: _default
+
     - name: Copy custom /etc/issue file
       copy:
         src: files/issue
