@@ -1,5 +1,7 @@
 ---
 - name: Test web service
+  hosts: localhost
+  become: no
   tasks:
     - name: connect to internet web server
       uri:

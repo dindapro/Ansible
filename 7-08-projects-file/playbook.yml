@@ -25,8 +25,6 @@
         file: /var/www/html/index.html
 
 - name: Import test play file and set the variable
-  hosts: redhat1.mshome.net
-  become: no
   import_playbook: plays/test.yml
   vars:
     url: 'http://redhat1.mshome.net'
