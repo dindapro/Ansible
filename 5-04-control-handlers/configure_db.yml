@@ -6,7 +6,7 @@
       - mariadb-server
       - python3-PyMySQL
     db_service: mariadb
-    resources_url: http://materials.example.com/labs/control-handlers
+    resources_url: https://raw.githubusercontent.com/dindapro/Ansible/main/5-04-control-handlers
     config_file_url: "{{ resources_url }}/my.cnf.standard"
     config_file_dst: /etc/my.cnf
   tasks:
