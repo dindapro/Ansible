@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-[student@workstation role-system]$ sudo yum install rhel-system-roles
+[student@workstation role-system]$ sudo yum install linux-system-roles
 ```
 
 ## Verify
