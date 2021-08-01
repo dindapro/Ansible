@@ -1,0 +1,8 @@
+
+- name: Display free memory
+  debug:
+    msg: "Free memory for this system is {{ ansible_facts['memfree_mb'] }}"
+- name: Display the "output" variable
+  debug:
+    var: output
+    verbosity: 2
