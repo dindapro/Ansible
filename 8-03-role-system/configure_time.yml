@@ -1,9 +1,9 @@
 ---
 - name: Time Synchronization
-  hosts: database_servers
+  hosts: all
 
   roles:
-    - rhel-system-roles.timesync
+    - linux-system-roles.timesync
 
   post_tasks:
     - name: Set timezone

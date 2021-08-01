@@ -13,8 +13,10 @@
 ```
 
 ## HELP
-
-
+This is the correct way install on ansible with ENV
+```bash
+(ansible) teguh@TeguhF:/mnt/d/02-IT/05-RedH/2-Ans/2-Cod/8-03-role-system$ pip3 install jmespath
+```
 
 
 
