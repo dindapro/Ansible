@@ -1,0 +1,886 @@
+2021-08-01 23:26:32,295 p=3993 u=teguh n=ansible | ERROR! the playbook: samba. could not be found
+2021-08-01 23:26:35,632 p=4003 u=teguh n=ansible | ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each:
+JSON: Expecting value: line 1 column 1 (char 0)
+
+Syntax Error while loading YAML.
+  mapping values are not allowed in this context
+
+The error appears to be in '/mnt/d/02-IT/05-RedH/2-Ans/2-Cod/9-02-troubleshoot-playbook/finish/samba.yml': line 8, column 30, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+    install_state: installed
+    random_var: This is colon: test
+                             ^ here
+
+2021-08-01 23:27:29,542 p=4028 u=teguh n=ansible | ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each:
+JSON: Expecting value: line 1 column 1 (char 0)
+
+Syntax Error while loading YAML.
+  found unacceptable key (unhashable type: 'AnsibleMapping')
+
+The error appears to be in '/mnt/d/02-IT/05-RedH/2-Ans/2-Cod/9-02-troubleshoot-playbook/finish/samba.yml': line 14, column 15, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+      name: samba
+      state: {{ install_state }}
+              ^ here
+We could be wrong, but this one looks like it might be an issue with
+missing quotes. Always quote template expression brackets when they
+start a value. For instance:
+
+    with_items:
+      - {{ foo }}
+
+Should be written as:
+
+    with_items:
+      - "{{ foo }}"
+
+2021-08-01 23:30:05,962 p=4052 u=teguh n=ansible | ERROR! 'task' is not a valid attribute for a Play
+
+The error appears to be in '/mnt/d/02-IT/05-RedH/2-Ans/2-Cod/9-02-troubleshoot-playbook/finish/samba.yml': line 2, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+---
+- name: Install a samba server
+  ^ here
+
+2021-08-01 23:30:43,451 p=4059 u=teguh n=ansible | playbook: samba.yml
+2021-08-01 23:32:02,630 p=4066 u=teguh n=ansible | playbook: samba.yml
+2021-08-01 23:32:05,996 p=4070 u=teguh n=ansible | PLAY [Install a samba server] ********************************************************************************************************
+2021-08-01 23:32:06,019 p=4070 u=teguh n=ansible | TASK [Gathering Facts] ***************************************************************************************************************
+2021-08-01 23:32:07,494 p=4070 u=teguh n=ansible | ok: [redhat1.mshome.net]
+2021-08-01 23:32:07,531 p=4070 u=teguh n=ansible | TASK [install samba] *****************************************************************************************************************
+2021-08-01 23:32:25,688 p=4070 u=teguh n=ansible | changed: [redhat1.mshome.net]
+2021-08-01 23:32:25,707 p=4070 u=teguh n=ansible | TASK [install firewalld] *************************************************************************************************************
+2021-08-01 23:32:31,899 p=4070 u=teguh n=ansible | ok: [redhat1.mshome.net]
+2021-08-01 23:32:31,940 p=4070 u=teguh n=ansible | TASK [debug install_state variable] **************************************************************************************************
+2021-08-01 23:32:31,950 p=4070 u=teguh n=ansible | ok: [redhat1.mshome.net] => {
+    "msg": "The statefor the sambaservice is installed"
+}
+2021-08-01 23:32:31,973 p=4070 u=teguh n=ansible | TASK [start samba] *******************************************************************************************************************
+2021-08-01 23:32:32,974 p=4070 u=teguh n=ansible | changed: [redhat1.mshome.net]
+2021-08-01 23:32:32,994 p=4070 u=teguh n=ansible | TASK [start firewalld] ***************************************************************************************************************
+2021-08-01 23:32:33,537 p=4070 u=teguh n=ansible | ok: [redhat1.mshome.net]
+2021-08-01 23:32:33,587 p=4070 u=teguh n=ansible | TASK [configure firewall for samba] **************************************************************************************************
+2021-08-01 23:32:34,480 p=4070 u=teguh n=ansible | changed: [redhat1.mshome.net]
+2021-08-01 23:32:34,501 p=4070 u=teguh n=ansible | TASK [deliver samba config] **********************************************************************************************************
+2021-08-01 23:32:34,607 p=4070 u=teguh n=ansible | An exception occurred during task execution. To see the full traceback, use -vvv. The error was: NoneType: None
+2021-08-01 23:32:34,608 p=4070 u=teguh n=ansible | fatal: [redhat1.mshome.net]: FAILED! => {"changed": false, "msg": "src and dest are required"}
+2021-08-01 23:32:34,611 p=4070 u=teguh n=ansible | PLAY RECAP ***************************************************************************************************************************
+2021-08-01 23:32:34,612 p=4070 u=teguh n=ansible | redhat1.mshome.net         : ok=7    changed=3    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2021-08-01 23:32:49,478 p=4142 u=teguh n=ansible | ansible-playbook [core 2.11.3] 
+  config file = /mnt/d/02-IT/05-RedH/2-Ans/2-Cod/9-02-troubleshoot-playbook/finish/ansible.cfg
+  configured module search path = ['/home/teguh/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/teguh/virtualenvs/ansible/lib/python3.8/site-packages/ansible
+  ansible collection location = /home/teguh/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/teguh/virtualenvs/ansible/bin/ansible-playbook
+  python version = 3.8.10 (default, Jun  2 2021, 10:49:15) [GCC 9.4.0]
+  jinja version = 3.0.1
+  libyaml = True
+2021-08-01 23:32:49,479 p=4142 u=teguh n=ansible | Using /mnt/d/02-IT/05-RedH/2-Ans/2-Cod/9-02-troubleshoot-playbook/finish/ansible.cfg as config file
+2021-08-01 23:32:49,494 p=4142 u=teguh n=ansible | host_list declined parsing /mnt/d/02-IT/05-RedH/2-Ans/2-Cod/9-02-troubleshoot-playbook/finish/inventory as it did not pass its verify_file() method
+2021-08-01 23:32:49,500 p=4142 u=teguh n=ansible | script declined parsing /mnt/d/02-IT/05-RedH/2-Ans/2-Cod/9-02-troubleshoot-playbook/finish/inventory as it did not pass its verify_file() method
+2021-08-01 23:32:49,501 p=4142 u=teguh n=ansible | auto declined parsing /mnt/d/02-IT/05-RedH/2-Ans/2-Cod/9-02-troubleshoot-playbook/finish/inventory as it did not pass its verify_file() method
+2021-08-01 23:32:49,518 p=4142 u=teguh n=ansible | Parsed /mnt/d/02-IT/05-RedH/2-Ans/2-Cod/9-02-troubleshoot-playbook/finish/inventory inventory source with ini plugin
+2021-08-01 23:32:49,598 p=4142 u=teguh n=ansible | redirecting (type: modules) ansible.builtin.firewalld to ansible.posix.firewalld
+2021-08-01 23:32:49,610 p=4142 u=teguh n=ansible | Skipping callback 'default', as we already have a stdout callback.
+2021-08-01 23:32:49,611 p=4142 u=teguh n=ansible | Skipping callback 'minimal', as we already have a stdout callback.
+2021-08-01 23:32:49,612 p=4142 u=teguh n=ansible | Skipping callback 'oneline', as we already have a stdout callback.
+2021-08-01 23:32:49,613 p=4142 u=teguh n=ansible | PLAYBOOK: samba.yml ******************************************************************************************************************
+2021-08-01 23:32:49,614 p=4142 u=teguh n=ansible | 1 plays in samba.yml
+2021-08-01 23:32:49,618 p=4142 u=teguh n=ansible | PLAY [Install a samba server] ********************************************************************************************************
+2021-08-01 23:32:49,661 p=4142 u=teguh n=ansible | TASK [Gathering Facts] ***************************************************************************************************************
+2021-08-01 23:32:49,668 p=4147 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:49,670 p=4147 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'echo ~devops && sleep 0'"'"''
+2021-08-01 23:32:49,693 p=4147 u=teguh n=ansible | <redhat1.mshome.net> (0, b'/home/devops\n', b'')
+2021-08-01 23:32:49,694 p=4147 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:49,695 p=4147 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/devops/.ansible/tmp `"&& mkdir "` echo /home/devops/.ansible/tmp/ansible-tmp-1627835569.6944923-4147-229761564363261 `" && echo ansible-tmp-1627835569.6944923-4147-229761564363261="` echo /home/devops/.ansible/tmp/ansible-tmp-1627835569.6944923-4147-229761564363261 `" ) && sleep 0'"'"''
+2021-08-01 23:32:49,721 p=4147 u=teguh n=ansible | <redhat1.mshome.net> (0, b'ansible-tmp-1627835569.6944923-4147-229761564363261=/home/devops/.ansible/tmp/ansible-tmp-1627835569.6944923-4147-229761564363261\n', b'')
+2021-08-01 23:32:49,895 p=4147 u=teguh n=ansible | <redhat1.mshome.net> Attempting python interpreter discovery
+2021-08-01 23:32:49,896 p=4147 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:49,897 p=4147 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'echo PLATFORM; uname; echo FOUND; command -v '"'"'"'"'"'"'"'"'/usr/bin/python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.9'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.8'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.6'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.5'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python2.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python2.6'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/libexec/platform-python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python3'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python'"'"'"'"'"'"'"'"'; echo ENDFOUND && sleep 0'"'"''
+2021-08-01 23:32:49,924 p=4147 u=teguh n=ansible | <redhat1.mshome.net> (0, b'PLATFORM\nLinux\nFOUND\n/usr/libexec/platform-python\nENDFOUND\n', b'')
+2021-08-01 23:32:49,925 p=4147 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:49,926 p=4147 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'/usr/libexec/platform-python && sleep 0'"'"''
+2021-08-01 23:32:49,985 p=4147 u=teguh n=ansible | <redhat1.mshome.net> (0, b'{"platform_dist_result": ["redhat", "8.3", "Ootpa"], "osrelease_content": "NAME=\\"Red Hat Enterprise Linux\\"\\nVERSION=\\"8.3 (Ootpa)\\"\\nID=\\"rhel\\"\\nID_LIKE=\\"fedora\\"\\nVERSION_ID=\\"8.3\\"\\nPLATFORM_ID=\\"platform:el8\\"\\nPRETTY_NAME=\\"Red Hat Enterprise Linux 8.3 (Ootpa)\\"\\nANSI_COLOR=\\"0;31\\"\\nCPE_NAME=\\"cpe:/o:redhat:enterprise_linux:8.3:GA\\"\\nHOME_URL=\\"https://www.redhat.com/\\"\\nBUG_REPORT_URL=\\"https://bugzilla.redhat.com/\\"\\n\\nREDHAT_BUGZILLA_PRODUCT=\\"Red Hat Enterprise Linux 8\\"\\nREDHAT_BUGZILLA_PRODUCT_VERSION=8.3\\nREDHAT_SUPPORT_PRODUCT=\\"Red Hat Enterprise Linux\\"\\nREDHAT_SUPPORT_PRODUCT_VERSION=\\"8.3\\"\\n"}\n', b'')
+2021-08-01 23:32:49,987 p=4147 u=teguh n=ansible | Using module file /home/teguh/virtualenvs/ansible/lib/python3.8/site-packages/ansible/modules/setup.py
+2021-08-01 23:32:49,988 p=4147 u=teguh n=ansible | <redhat1.mshome.net> PUT /home/teguh/.ansible/tmp/ansible-local-41427xf_xzo3/tmpf9h4tbgk TO /home/devops/.ansible/tmp/ansible-tmp-1627835569.6944923-4147-229761564363261/AnsiballZ_setup.py
+2021-08-01 23:32:49,989 p=4147 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d '[redhat1.mshome.net]'
+2021-08-01 23:32:50,039 p=4147 u=teguh n=ansible | <redhat1.mshome.net> (0, b'sftp> put /home/teguh/.ansible/tmp/ansible-local-41427xf_xzo3/tmpf9h4tbgk /home/devops/.ansible/tmp/ansible-tmp-1627835569.6944923-4147-229761564363261/AnsiballZ_setup.py\n', b'')
+2021-08-01 23:32:50,040 p=4147 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:50,041 p=4147 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'chmod u+x /home/devops/.ansible/tmp/ansible-tmp-1627835569.6944923-4147-229761564363261/ /home/devops/.ansible/tmp/ansible-tmp-1627835569.6944923-4147-229761564363261/AnsiballZ_setup.py && sleep 0'"'"''
+2021-08-01 23:32:50,068 p=4147 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:32:50,069 p=4147 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:50,070 p=4147 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d -tt redhat1.mshome.net '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-rzyqnuszewdkiqfpsqmtqlxetjugwmfs ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627835569.6944923-4147-229761564363261/AnsiballZ_setup.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+2021-08-01 23:32:50,114 p=4147 u=teguh n=ansible | Escalation succeeded
+2021-08-01 23:32:50,678 p=4147 u=teguh n=ansible | <redhat1.mshome.net> (0, b'\r\n{"ansible_facts": {"ansible_user_id": "root", "ansible_user_uid": 0, "ansible_user_gid": 0, "ansible_user_gecos": "root", "ansible_user_dir": "/root", "ansible_user_shell": "/bin/bash", "ansible_real_user_id": 0, "ansible_effective_user_id": 0, "ansible_real_group_id": 0, "ansible_effective_group_id": 0, "ansible_distribution": "RedHat", "ansible_distribution_release": "Ootpa", "ansible_distribution_version": "8.3", "ansible_distribution_major_version": "8", "ansible_distribution_file_path": "/etc/redhat-release", "ansible_distribution_file_variety": "RedHat", "ansible_distribution_file_parsed": true, "ansible_distribution_file_search_string": "Red Hat", "ansible_os_family": "RedHat", "ansible_ssh_host_key_rsa_public": "AAAAB3NzaC1yc2EAAAADAQABAAABgQCucq7xRiU7FSSdd7wzg7NA48xZAoc68jvZy0nWpYlMceSKH4ja1pco2PT2fqaHhcCEkov+yUc4ys81v06LmaT8kKnveiMKuEI6uiRRn4zO7ryo50yeWKvGhpHv9Tf56rQ2z5R+b+z6JxOdec6RyMEglEbz2yI76GQMSDJLibMFbBVOJ5aEq4W/nQog8xu4wJMHyv3sMxL+Ogv+CcwQ013d+A+crMrZaPHkVC2NdxFKbh3cmg322sSxfKvZo3453f9yMQsrLXA86BYEInMlerKNOKitMSBGr/JcUqWW+7dILHgZfaUMoUGefMc9iEy5DxOiHyt+pPvgOCCxeMtwspdH9kNL9tHjoqXxaLoP9167nAaTBGRMHIdBZPO1YHBDITe1rQRKggb543uIC87Uub6QcKrfNx6CaLDz8Qdw3jrJi3W7xUx8GhO8ypFWdCOcwnhFvw/An6FmGaOqENyaQW/fTiJUJM0h5gMbAYhljFtYFaScJxjb4G9W0p0wEcs+iUk=", "ansible_ssh_host_key_rsa_public_keytype": "ssh-rsa", "ansible_ssh_host_key_ecdsa_public": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBIOGulI8eGMaV3KceH+w7whFeSNWGybZQKL1XE4QHWhWs4BTqqh/8iESpSwgff3aI+DHHP8pk2+y3PToOgG70mI=", "ansible_ssh_host_key_ecdsa_public_keytype": "ecdsa-sha2-nistp256", "ansible_ssh_host_key_ed25519_public": "AAAAC3NzaC1lZDI1NTE5AAAAIP/J+GfSw8dVeJ79qpE3zl7Jd/ncZNX8yqsqMbMyCd6P", "ansible_ssh_host_key_ed25519_public_keytype": "ssh-ed25519", "ansible_system_capabilities_enforced": "True", "ansible_system_capabilities": ["cap_chown", "cap_dac_override", "cap_dac_read_search", "cap_fowner", "cap_fsetid", "cap_kill", "cap_setgid", "cap_setuid", "cap_setpcap", "cap_linux_immutable", "cap_net_bind_service", "cap_net_broadcast", "cap_net_admin", "cap_net_raw", "cap_ipc_lock", "cap_ipc_owner", "cap_sys_module", "cap_sys_rawio", "cap_sys_chroot", "cap_sys_ptrace", "cap_sys_pacct", "cap_sys_admin", "cap_sys_boot", "cap_sys_nice", "cap_sys_resource", "cap_sys_time", "cap_sys_tty_config", "cap_mknod", "cap_lease", "cap_audit_write", "cap_audit_control", "cap_setfcap", "cap_mac_override", "cap_mac_admin", "cap_syslog", "cap_wake_alarm", "cap_block_suspend", "cap_audit_read+ep"], "ansible_iscsi_iqn": "", "ansible_virtualization_role": "guest", "ansible_virtualization_type": "VirtualPC", "ansible_virtualization_tech_guest": ["VirtualPC"], "ansible_virtualization_tech_host": [], "ansible_dns": {"search": ["mshome.net"], "nameservers": ["172.22.144.1"]}, "ansible_fibre_channel_wwn": [], "ansible_env": {"LS_COLORS": "rs=0:di=38;5;33:ln=38;5;51:mh=00:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=01;05;37;41:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;40:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.zst=38;5;9:*.tzst=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.wim=38;5;9:*.swm=38;5;9:*.dwm=38;5;9:*.esd=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.mjpg=38;5;13:*.mjpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.m4a=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.oga=38;5;45:*.opus=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:", "LANG": "C.UTF-8", "SUDO_GID": "4000", "SUDO_COMMAND": "/bin/sh -c echo BECOME-SUCCESS-rzyqnuszewdkiqfpsqmtqlxetjugwmfs ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627835569.6944923-4147-229761564363261/AnsiballZ_setup.py", "USER": "root", "PWD": "/home/devops", "HOME": "/root", "SUDO_USER": "devops", "SUDO_UID": "4000", "MAIL": "/var/mail/root", "SHELL": "/bin/bash", "TERM": "xterm-256color", "SHLVL": "1", "LOGNAME": "root", "PATH": "/sbin:/bin:/usr/sbin:/usr/bin", "_": "/usr/libexec/platform-python"}, "ansible_pkg_mgr": "dnf", "ansible_system": "Linux", "ansible_kernel": "4.18.0-240.el8.x86_64", "ansible_kernel_version": "#1 SMP Wed Sep 23 05:13:10 EDT 2020", "ansible_machine": "x86_64", "ansible_python_version": "3.6.8", "ansible_fqdn": "redhat1.mshome.net", "ansible_hostname": "redhat1", "ansible_nodename": "redhat1", "ansible_domain": "mshome.net", "ansible_userspace_bits": "64", "ansible_architecture": "x86_64", "ansible_userspace_architecture": "x86_64", "ansible_machine_id": "b8c31560fd3544ca84f5ca9d84f6d00d", "ansible_fips": false, "ansible_local": {}, "ansible_python": {"version": {"major": 3, "minor": 6, "micro": 8, "releaselevel": "final", "serial": 0}, "version_info": [3, 6, 8, "final", 0], "executable": "/usr/libexec/platform-python", "has_sslcontext": true, "type": "cpython"}, "ansible_apparmor": {"status": "disabled"}, "ansible_lsb": {}, "ansible_is_chroot": false, "ansible_selinux_python_present": true, "ansible_selinux": {"status": "enabled", "policyvers": 32, "config_mode": "enforcing", "mode": "enforcing", "type": "targeted"}, "ansible_date_time": {"year": "2021", "month": "08", "weekday": "Sunday", "weekday_number": "0", "weeknumber": "30", "day": "01", "hour": "12", "minute": "32", "second": "50", "epoch": "1627835570", "date": "2021-08-01", "time": "12:32:50", "iso8601_micro": "2021-08-01T16:32:50.373200Z", "iso8601": "2021-08-01T16:32:50Z", "iso8601_basic": "20210801T123250373200", "iso8601_basic_short": "20210801T123250", "tz": "EDT", "tz_dst": "EDT", "tz_offset": "-0400"}, "ansible_cmdline": {"BOOT_IMAGE": "(hd0,gpt2)/vmlinuz-4.18.0-240.el8.x86_64", "root": "/dev/mapper/rhel_rhel83-root", "ro": true, "crashkernel": "auto", "resume": "/dev/mapper/rhel_rhel83-swap", "rd.lvm.lv": "rhel_rhel83/swap", "rhgb": true, "quiet": true}, "ansible_proc_cmdline": {"BOOT_IMAGE": "(hd0,gpt2)/vmlinuz-4.18.0-240.el8.x86_64", "root": "/dev/mapper/rhel_rhel83-root", "ro": true, "crashkernel": "auto", "resume": "/dev/mapper/rhel_rhel83-swap", "rd.lvm.lv": ["rhel_rhel83/root", "rhel_rhel83/swap"], "rhgb": true, "quiet": true}, "ansible_processor": ["0", "GenuineIntel", "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz", "1", "GenuineIntel", "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz", "2", "GenuineIntel", "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz", "3", "GenuineIntel", "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz"], "ansible_processor_count": 1, "ansible_processor_cores": 2, "ansible_processor_threads_per_core": 2, "ansible_processor_vcpus": 4, "ansible_processor_nproc": 4, "ansible_memtotal_mb": 2883, "ansible_memfree_mb": 1993, "ansible_swaptotal_mb": 5063, "ansible_swapfree_mb": 5063, "ansible_memory_mb": {"real": {"total": 2883, "used": 890, "free": 1993}, "nocache": {"free": 2493, "used": 390}, "swap": {"total": 5063, "free": 5063, "used": 0, "cached": 0}}, "ansible_bios_date": "11/01/2019", "ansible_bios_vendor": "Microsoft Corporation", "ansible_bios_version": "Hyper-V UEFI Release v4.0", "ansible_board_asset_tag": "None", "ansible_board_name": "Virtual Machine", "ansible_board_serial": "1726-0836-5970-3708-0397-3126-85", "ansible_board_vendor": "Microsoft Corporation", "ansible_board_version": "Hyper-V UEFI Release v4.0", "ansible_chassis_asset_tag": "1726-0836-5970-3708-0397-3126-85", "ansible_chassis_serial": "1726-0836-5970-3708-0397-3126-85", "ansible_chassis_vendor": "Microsoft Corporation", "ansible_chassis_version": "Hyper-V UEFI Release v4.0", "ansible_form_factor": "Desktop", "ansible_product_name": "Virtual Machine", "ansible_product_serial": "1726-0836-5970-3708-0397-3126-85", "ansible_product_uuid": "8c917e9e-a409-4f5b-a43d-ff2eb1d83626", "ansible_product_version": "Hyper-V UEFI Release v4.0", "ansible_system_vendor": "Microsoft Corporation", "ansible_devices": {"dm-1": {"virtual": 1, "links": {"ids": ["dm-name-rhel_rhel83-swap", "dm-uuid-LVM-tKLLzsKZiyunCHD24Gx5UEdAufJgP5CpyGBRfniy5sZFANu11WlNwSWUBlr0peEs"], "uuids": ["fcf1dced-3469-438b-a87c-4f2970919d79"], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "2097152", "partitions": {}, "rotational": "1", "scheduler_mode": "", "sectors": "10371072", "sectorsize": "512", "size": "4.95 GB", "host": "", "holders": []}, "sr0": {"virtual": 1, "links": {"ids": ["scsi-14d534654202020207305e3437703544694957d7ced624a7d"], "uuids": [], "labels": [], "masters": []}, "vendor": "Msft", "model": "Virtual DVD-ROM", "sas_address": null, "sas_device_handle": null, "removable": "1", "support_discard": "0", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectors": "2097151", "sectorsize": "512", "size": "1024.00 MB", "host": "", "holders": []}, "dm-2": {"virtual": 1, "links": {"ids": ["dm-name-rhel_rhel83-home", "dm-uuid-LVM-tKLLzsKZiyunCHD24Gx5UEdAufJgP5CpHMYdmkREhBwIaWKUL0tRaSVad2h29CSc"], "uuids": ["3d7b61b0-f927-4cc0-a385-1edfeba8d09e"], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "2097152", "partitions": {}, "rotational": "1", "scheduler_mode": "", "sectors": "105832448", "sectorsize": "512", "size": "50.46 GB", "host": "", "holders": []}, "dm-0": {"virtual": 1, "links": {"ids": ["dm-name-rhel_rhel83-root", "dm-uuid-LVM-tKLLzsKZiyunCHD24Gx5UEdAufJgP5Cp50tWycG0pjK6rN4L95bdQNHcBXXtrupO"], "uuids": ["41c66e98-4141-4646-b6b7-3a46dbb3b8dd"], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "2097152", "partitions": {}, "rotational": "1", "scheduler_mode": "", "sectors": "146800640", "sectorsize": "512", "size": "70.00 GB", "host": "", "holders": []}, "sda": {"virtual": 1, "links": {"ids": ["scsi-14d534654202020209d628a84dc12124b869f10068df52d4a", "scsi-3600224809d628a84dc1210068df52d4a", "wwn-0x600224809d628a84dc1210068df52d4a"], "uuids": [], "labels": [], "masters": []}, "vendor": "Msft", "model": "Virtual Disk", "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "2097152", "wwn": "0x600224809d628a84dc1210068df52d4a", "partitions": {"sda2": {"links": {"ids": ["scsi-14d534654202020209d628a84dc12124b869f10068df52d4a-part2", "scsi-3600224809d628a84dc1210068df52d4a-part2", "wwn-0x600224809d628a84dc1210068df52d4a-part2"], "uuids": ["cca65b75-a43a-434b-b52e-ef5d14be549c"], "labels": [], "masters": []}, "start": "1230848", "sectors": "2097152", "sectorsize": 512, "size": "1.00 GB", "uuid": "cca65b75-a43a-434b-b52e-ef5d14be549c", "holders": []}, "sda3": {"links": {"ids": ["lvm-pv-uuid-iBTVB1-FrfU-3r3k-c3Q5-o26w-eHgF-vc6ChC", "scsi-14d534654202020209d628a84dc12124b869f10068df52d4a-part3", "scsi-3600224809d628a84dc1210068df52d4a-part3", "wwn-0x600224809d628a84dc1210068df52d4a-part3"], "uuids": [], "labels": [], "masters": ["dm-0", "dm-1", "dm-2"]}, "start": "3328000", "sectors": "263008256", "sectorsize": 512, "size": "125.41 GB", "uuid": null, "holders": ["rhel_rhel83-swap", "rhel_rhel83-home", "rhel_rhel83-root"]}, "sda1": {"links": {"ids": ["scsi-14d534654202020209d628a84dc12124b869f10068df52d4a-part1", "scsi-3600224809d628a84dc1210068df52d4a-part1", "wwn-0x600224809d628a84dc1210068df52d4a-part1"], "uuids": ["DD14-E633"], "labels": [], "masters": []}, "start": "2048", "sectors": "1228800", "sectorsize": 512, "size": "600.00 MB", "uuid": "DD14-E633", "holders": []}}, "rotational": "1", "scheduler_mode": "none", "sectors": "266338304", "sectorsize": "512", "size": "127.00 GB", "host": "", "holders": []}}, "ansible_device_links": {"ids": {"dm-2": ["dm-name-rhel_rhel83-home", "dm-uuid-LVM-tKLLzsKZiyunCHD24Gx5UEdAufJgP5CpHMYdmkREhBwIaWKUL0tRaSVad2h29CSc"], "sda2": ["scsi-14d534654202020209d628a84dc12124b869f10068df52d4a-part2", "scsi-3600224809d628a84dc1210068df52d4a-part2", "wwn-0x600224809d628a84dc1210068df52d4a-part2"], "sda1": ["scsi-14d534654202020209d628a84dc12124b869f10068df52d4a-part1", "scsi-3600224809d628a84dc1210068df52d4a-part1", "wwn-0x600224809d628a84dc1210068df52d4a-part1"], "sda3": ["lvm-pv-uuid-iBTVB1-FrfU-3r3k-c3Q5-o26w-eHgF-vc6ChC", "scsi-14d534654202020209d628a84dc12124b869f10068df52d4a-part3", "scsi-3600224809d628a84dc1210068df52d4a-part3", "wwn-0x600224809d628a84dc1210068df52d4a-part3"], "sda": ["scsi-14d534654202020209d628a84dc12124b869f10068df52d4a", "scsi-3600224809d628a84dc1210068df52d4a", "wwn-0x600224809d628a84dc1210068df52d4a"], "dm-1": ["dm-name-rhel_rhel83-swap", "dm-uuid-LVM-tKLLzsKZiyunCHD24Gx5UEdAufJgP5CpyGBRfniy5sZFANu11WlNwSWUBlr0peEs"], "dm-0": ["dm-name-rhel_rhel83-root", "dm-uuid-LVM-tKLLzsKZiyunCHD24Gx5UEdAufJgP5Cp50tWycG0pjK6rN4L95bdQNHcBXXtrupO"], "sr0": ["scsi-14d534654202020207305e3437703544694957d7ced624a7d"]}, "uuids": {"dm-2": ["3d7b61b0-f927-4cc0-a385-1edfeba8d09e"], "dm-1": ["fcf1dced-3469-438b-a87c-4f2970919d79"], "dm-0": ["41c66e98-4141-4646-b6b7-3a46dbb3b8dd"], "sda1": ["DD14-E633"], "sda2": ["cca65b75-a43a-434b-b52e-ef5d14be549c"]}, "labels": {}, "masters": {"sda3": ["dm-0", "dm-1", "dm-2"]}}, "ansible_uptime_seconds": 14515, "ansible_lvm": {"lvs": {"home": {"size_g": "50.46", "vg": "rhel_rhel83"}, "root": {"size_g": "70.00", "vg": "rhel_rhel83"}, "swap": {"size_g": "4.95", "vg": "rhel_rhel83"}}, "vgs": {"rhel_rhel83": {"size_g": "125.41", "free_g": "0", "num_lvs": "3", "num_pvs": "1"}}, "pvs": {"/dev/sda3": {"size_g": "125.41", "free_g": "0", "vg": "rhel_rhel83"}}}, "ansible_mounts": [{"mount": "/", "device": "/dev/mapper/rhel_rhel83-root", "fstype": "xfs", "options": "rw,seclabel,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota", "size_total": 75125227520, "size_available": 72873168896, "block_size": 4096, "block_total": 18341120, "block_available": 17791301, "block_used": 549819, "inode_total": 36700160, "inode_available": 36666240, "inode_used": 33920, "uuid": "41c66e98-4141-4646-b6b7-3a46dbb3b8dd"}, {"mount": "/home", "device": "/dev/mapper/rhel_rhel83-home", "fstype": "xfs", "options": "rw,seclabel,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota", "size_total": 54159757312, "size_available": 53747798016, "block_size": 4096, "block_total": 13222597, "block_available": 13122021, "block_used": 100576, "inode_total": 26458112, "inode_available": 26458089, "inode_used": 23, "uuid": "3d7b61b0-f927-4cc0-a385-1edfeba8d09e"}, {"mount": "/boot", "device": "/dev/sda2", "fstype": "xfs", "options": "rw,seclabel,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota", "size_total": 1063256064, "size_available": 868376576, "block_size": 4096, "block_total": 259584, "block_available": 212006, "block_used": 47578, "inode_total": 524288, "inode_available": 524270, "inode_used": 18, "uuid": "cca65b75-a43a-434b-b52e-ef5d14be549c"}, {"mount": "/boot/efi", "device": "/dev/sda1", "fstype": "vfat", "options": "rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro", "size_total": 627900416, "size_available": 620699648, "block_size": 4096, "block_total": 153296, "block_available": 151538, "block_used": 1758, "inode_total": 0, "inode_available": 0, "inode_used": 0, "uuid": "DD14-E633"}], "ansible_interfaces": ["lo", "eth0"], "ansible_lo": {"device": "lo", "mtu": 65536, "active": true, "type": "loopback", "promisc": false, "ipv4": {"address": "127.0.0.1", "broadcast": "", "netmask": "255.0.0.0", "network": "127.0.0.0"}, "ipv6": [{"address": "::1", "prefix": "128", "scope": "host"}], "features": {"rx_checksumming": "on [fixed]", "tx_checksumming": "on", "tx_checksum_ipv4": "off [fixed]", "tx_checksum_ip_generic": "on [fixed]", "tx_checksum_ipv6": "off [fixed]", "tx_checksum_fcoe_crc": "off [fixed]", "tx_checksum_sctp": "on [fixed]", "scatter_gather": "on", "tx_scatter_gather": "on [fixed]", "tx_scatter_gather_fraglist": "on [fixed]", "tcp_segmentation_offload": "on", "tx_tcp_segmentation": "on", "tx_tcp_ecn_segmentation": "on", "tx_tcp_mangleid_segmentation": "on", "tx_tcp6_segmentation": "on", "generic_segmentation_offload": "on", "generic_receive_offload": "on", "large_receive_offload": "off [fixed]", "rx_vlan_offload": "off [fixed]", "tx_vlan_offload": "off [fixed]", "ntuple_filters": "off [fixed]", "receive_hashing": "off [fixed]", "highdma": "on [fixed]", "rx_vlan_filter": "off [fixed]", "vlan_challenged": "on [fixed]", "tx_lockless": "on [fixed]", "netns_local": "on [fixed]", "tx_gso_robust": "off [fixed]", "tx_fcoe_segmentation": "off [fixed]", "tx_gre_segmentation": "off [fixed]", "tx_gre_csum_segmentation": "off [fixed]", "tx_ipxip4_segmentation": "off [fixed]", "tx_ipxip6_segmentation": "off [fixed]", "tx_udp_tnl_segmentation": "off [fixed]", "tx_udp_tnl_csum_segmentation": "off [fixed]", "tx_gso_partial": "off [fixed]", "tx_sctp_segmentation": "on", "tx_esp_segmentation": "off [fixed]", "tx_udp_segmentation": "off [fixed]", "tls_hw_rx_offload": "off [fixed]", "fcoe_mtu": "off [fixed]", "tx_nocache_copy": "off [fixed]", "loopback": "on [fixed]", "rx_fcs": "off [fixed]", "rx_all": "off [fixed]", "tx_vlan_stag_hw_insert": "off [fixed]", "rx_vlan_stag_hw_parse": "off [fixed]", "rx_vlan_stag_filter": "off [fixed]", "l2_fwd_offload": "off [fixed]", "hw_tc_offload": "off [fixed]", "esp_hw_offload": "off [fixed]", "esp_tx_csum_hw_offload": "off [fixed]", "rx_udp_tunnel_port_offload": "off [fixed]", "tls_hw_tx_offload": "off [fixed]", "rx_gro_hw": "off [fixed]", "tls_hw_record": "off [fixed]"}, "timestamping": ["tx_software", "rx_software", "software"], "hw_timestamp_filters": []}, "ansible_eth0": {"device": "eth0", "macaddress": "00:15:5d:45:a2:02", "mtu": 1500, "active": true, "module": "hv_netvsc", "type": "ether", "pciid": "38102fcb-1344-47a9-b5bd-ada0c5d87566", "speed": 10000, "promisc": false, "ipv4": {"address": "172.22.145.169", "broadcast": "172.22.159.255", "netmask": "255.255.240.0", "network": "172.22.144.0"}, "ipv6": [{"address": "fe80::816e:c998:1053:981b", "prefix": "64", "scope": "link"}], "features": {"rx_checksumming": "on", "tx_checksumming": "on", "tx_checksum_ipv4": "on", "tx_checksum_ip_generic": "off [fixed]", "tx_checksum_ipv6": "on", "tx_checksum_fcoe_crc": "off [fixed]", "tx_checksum_sctp": "off [fixed]", "scatter_gather": "on", "tx_scatter_gather": "on", "tx_scatter_gather_fraglist": "off [fixed]", "tcp_segmentation_offload": "on", "tx_tcp_segmentation": "on", "tx_tcp_ecn_segmentation": "off [fixed]", "tx_tcp_mangleid_segmentation": "off", "tx_tcp6_segmentation": "on", "generic_segmentation_offload": "on", "generic_receive_offload": "on", "large_receive_offload": "on", "rx_vlan_offload": "on [fixed]", "tx_vlan_offload": "on [fixed]", "ntuple_filters": "off [fixed]", "receive_hashing": "on", "highdma": "on [fixed]", "rx_vlan_filter": "off [fixed]", "vlan_challenged": "off [fixed]", "tx_lockless": "off [fixed]", "netns_local": "off [fixed]", "tx_gso_robust": "off [fixed]", "tx_fcoe_segmentation": "off [fixed]", "tx_gre_segmentation": "off [fixed]", "tx_gre_csum_segmentation": "off [fixed]", "tx_ipxip4_segmentation": "off [fixed]", "tx_ipxip6_segmentation": "off [fixed]", "tx_udp_tnl_segmentation": "off [fixed]", "tx_udp_tnl_csum_segmentation": "off [fixed]", "tx_gso_partial": "off [fixed]", "tx_sctp_segmentation": "off [fixed]", "tx_esp_segmentation": "off [fixed]", "tx_udp_segmentation": "off [fixed]", "tls_hw_rx_offload": "off [fixed]", "fcoe_mtu": "off [fixed]", "tx_nocache_copy": "off", "loopback": "off [fixed]", "rx_fcs": "off [fixed]", "rx_all": "off [fixed]", "tx_vlan_stag_hw_insert": "off [fixed]", "rx_vlan_stag_hw_parse": "off [fixed]", "rx_vlan_stag_filter": "off [fixed]", "l2_fwd_offload": "off [fixed]", "hw_tc_offload": "off [fixed]", "esp_hw_offload": "off [fixed]", "esp_tx_csum_hw_offload": "off [fixed]", "rx_udp_tunnel_port_offload": "off [fixed]", "tls_hw_tx_offload": "off [fixed]", "rx_gro_hw": "off [fixed]", "tls_hw_record": "off [fixed]"}, "timestamping": ["tx_software", "rx_software", "software"], "hw_timestamp_filters": []}, "ansible_default_ipv4": {"gateway": "172.22.144.1", "interface": "eth0", "address": "172.22.145.169", "broadcast": "172.22.159.255", "netmask": "255.255.240.0", "network": "172.22.144.0", "macaddress": "00:15:5d:45:a2:02", "mtu": 1500, "type": "ether", "alias": "eth0"}, "ansible_default_ipv6": {}, "ansible_all_ipv4_addresses": ["172.22.145.169"], "ansible_all_ipv6_addresses": ["fe80::816e:c998:1053:981b"], "ansible_hostnqn": "", "ansible_service_mgr": "systemd", "gather_subset": ["all"], "module_setup": true}, "invocation": {"module_args": {"gather_subset": ["all"], "gather_timeout": 10, "filter": [], "fact_path": "/etc/ansible/facts.d"}}}\r\n', b'Shared connection to redhat1.mshome.net closed.\r\n')
+2021-08-01 23:32:50,682 p=4147 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:50,683 p=4147 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'rm -f -r /home/devops/.ansible/tmp/ansible-tmp-1627835569.6944923-4147-229761564363261/ > /dev/null 2>&1 && sleep 0'"'"''
+2021-08-01 23:32:50,708 p=4147 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:32:50,718 p=4142 u=teguh n=ansible | ok: [redhat1.mshome.net]
+2021-08-01 23:32:50,740 p=4142 u=teguh n=ansible | META: ran handlers
+2021-08-01 23:32:50,759 p=4142 u=teguh n=ansible | TASK [install samba] *****************************************************************************************************************
+2021-08-01 23:32:50,771 p=4158 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:50,772 p=4158 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'echo ~devops && sleep 0'"'"''
+2021-08-01 23:32:50,797 p=4158 u=teguh n=ansible | <redhat1.mshome.net> (0, b'/home/devops\n', b'')
+2021-08-01 23:32:50,798 p=4158 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:50,799 p=4158 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/devops/.ansible/tmp `"&& mkdir "` echo /home/devops/.ansible/tmp/ansible-tmp-1627835570.7979279-4158-47479690574626 `" && echo ansible-tmp-1627835570.7979279-4158-47479690574626="` echo /home/devops/.ansible/tmp/ansible-tmp-1627835570.7979279-4158-47479690574626 `" ) && sleep 0'"'"''
+2021-08-01 23:32:50,826 p=4158 u=teguh n=ansible | <redhat1.mshome.net> (0, b'ansible-tmp-1627835570.7979279-4158-47479690574626=/home/devops/.ansible/tmp/ansible-tmp-1627835570.7979279-4158-47479690574626\n', b'')
+2021-08-01 23:32:50,952 p=4158 u=teguh n=ansible | Using module file /home/teguh/virtualenvs/ansible/lib/python3.8/site-packages/ansible/modules/dnf.py
+2021-08-01 23:32:50,953 p=4158 u=teguh n=ansible | <redhat1.mshome.net> PUT /home/teguh/.ansible/tmp/ansible-local-41427xf_xzo3/tmpe4_0egc_ TO /home/devops/.ansible/tmp/ansible-tmp-1627835570.7979279-4158-47479690574626/AnsiballZ_dnf.py
+2021-08-01 23:32:50,954 p=4158 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d '[redhat1.mshome.net]'
+2021-08-01 23:32:50,993 p=4158 u=teguh n=ansible | <redhat1.mshome.net> (0, b'sftp> put /home/teguh/.ansible/tmp/ansible-local-41427xf_xzo3/tmpe4_0egc_ /home/devops/.ansible/tmp/ansible-tmp-1627835570.7979279-4158-47479690574626/AnsiballZ_dnf.py\n', b'')
+2021-08-01 23:32:50,994 p=4158 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:50,995 p=4158 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'chmod u+x /home/devops/.ansible/tmp/ansible-tmp-1627835570.7979279-4158-47479690574626/ /home/devops/.ansible/tmp/ansible-tmp-1627835570.7979279-4158-47479690574626/AnsiballZ_dnf.py && sleep 0'"'"''
+2021-08-01 23:32:51,035 p=4158 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:32:51,036 p=4158 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:51,038 p=4158 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d -tt redhat1.mshome.net '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-cjruacydrwkosiivgtvogkdxeyzfpsve ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627835570.7979279-4158-47479690574626/AnsiballZ_dnf.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+2021-08-01 23:32:51,082 p=4158 u=teguh n=ansible | Escalation succeeded
+2021-08-01 23:32:56,810 p=4158 u=teguh n=ansible | <redhat1.mshome.net> (0, b'\r\n{"msg": "Nothing to do", "changed": false, "results": [], "rc": 0, "invocation": {"module_args": {"name": ["samba"], "state": "installed", "allow_downgrade": false, "autoremove": false, "bugfix": false, "disable_gpg_check": false, "disable_plugin": [], "disablerepo": [], "download_only": false, "enable_plugin": [], "enablerepo": [], "exclude": [], "installroot": "/", "install_repoquery": true, "install_weak_deps": true, "security": false, "skip_broken": false, "update_cache": false, "update_only": false, "validate_certs": true, "lock_timeout": 30, "allowerasing": false, "nobest": false, "conf_file": null, "disable_excludes": null, "download_dir": null, "list": null, "releasever": null}}}\r\n', b'Shared connection to redhat1.mshome.net closed.\r\n')
+2021-08-01 23:32:56,811 p=4158 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:56,812 p=4158 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'rm -f -r /home/devops/.ansible/tmp/ansible-tmp-1627835570.7979279-4158-47479690574626/ > /dev/null 2>&1 && sleep 0'"'"''
+2021-08-01 23:32:56,835 p=4158 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:32:56,839 p=4142 u=teguh n=ansible | ok: [redhat1.mshome.net] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "allow_downgrade": false,
+            "allowerasing": false,
+            "autoremove": false,
+            "bugfix": false,
+            "conf_file": null,
+            "disable_excludes": null,
+            "disable_gpg_check": false,
+            "disable_plugin": [],
+            "disablerepo": [],
+            "download_dir": null,
+            "download_only": false,
+            "enable_plugin": [],
+            "enablerepo": [],
+            "exclude": [],
+            "install_repoquery": true,
+            "install_weak_deps": true,
+            "installroot": "/",
+            "list": null,
+            "lock_timeout": 30,
+            "name": [
+                "samba"
+            ],
+            "nobest": false,
+            "releasever": null,
+            "security": false,
+            "skip_broken": false,
+            "state": "installed",
+            "update_cache": false,
+            "update_only": false,
+            "validate_certs": true
+        }
+    },
+    "msg": "Nothing to do",
+    "rc": 0,
+    "results": []
+}
+2021-08-01 23:32:56,862 p=4142 u=teguh n=ansible | TASK [install firewalld] *************************************************************************************************************
+2021-08-01 23:32:56,872 p=4167 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:56,873 p=4167 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'echo ~devops && sleep 0'"'"''
+2021-08-01 23:32:56,899 p=4167 u=teguh n=ansible | <redhat1.mshome.net> (0, b'/home/devops\n', b'')
+2021-08-01 23:32:56,900 p=4167 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:56,901 p=4167 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/devops/.ansible/tmp `"&& mkdir "` echo /home/devops/.ansible/tmp/ansible-tmp-1627835576.9006505-4167-166663171235873 `" && echo ansible-tmp-1627835576.9006505-4167-166663171235873="` echo /home/devops/.ansible/tmp/ansible-tmp-1627835576.9006505-4167-166663171235873 `" ) && sleep 0'"'"''
+2021-08-01 23:32:56,929 p=4167 u=teguh n=ansible | <redhat1.mshome.net> (0, b'ansible-tmp-1627835576.9006505-4167-166663171235873=/home/devops/.ansible/tmp/ansible-tmp-1627835576.9006505-4167-166663171235873\n', b'')
+2021-08-01 23:32:56,931 p=4167 u=teguh n=ansible | Using module file /home/teguh/virtualenvs/ansible/lib/python3.8/site-packages/ansible/modules/dnf.py
+2021-08-01 23:32:56,932 p=4167 u=teguh n=ansible | <redhat1.mshome.net> PUT /home/teguh/.ansible/tmp/ansible-local-41427xf_xzo3/tmp5anwr1x7 TO /home/devops/.ansible/tmp/ansible-tmp-1627835576.9006505-4167-166663171235873/AnsiballZ_dnf.py
+2021-08-01 23:32:56,933 p=4167 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d '[redhat1.mshome.net]'
+2021-08-01 23:32:56,970 p=4167 u=teguh n=ansible | <redhat1.mshome.net> (0, b'sftp> put /home/teguh/.ansible/tmp/ansible-local-41427xf_xzo3/tmp5anwr1x7 /home/devops/.ansible/tmp/ansible-tmp-1627835576.9006505-4167-166663171235873/AnsiballZ_dnf.py\n', b'')
+2021-08-01 23:32:56,971 p=4167 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:56,972 p=4167 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'chmod u+x /home/devops/.ansible/tmp/ansible-tmp-1627835576.9006505-4167-166663171235873/ /home/devops/.ansible/tmp/ansible-tmp-1627835576.9006505-4167-166663171235873/AnsiballZ_dnf.py && sleep 0'"'"''
+2021-08-01 23:32:56,996 p=4167 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:32:56,997 p=4167 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:32:56,998 p=4167 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d -tt redhat1.mshome.net '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-gekbnukngnpriltjcntaiknpbwedluzf ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627835576.9006505-4167-166663171235873/AnsiballZ_dnf.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+2021-08-01 23:32:57,047 p=4167 u=teguh n=ansible | Escalation succeeded
+2021-08-01 23:33:02,859 p=4167 u=teguh n=ansible | <redhat1.mshome.net> (0, b'\r\n{"msg": "Nothing to do", "changed": false, "results": [], "rc": 0, "invocation": {"module_args": {"name": ["firewalld"], "state": "installed", "allow_downgrade": false, "autoremove": false, "bugfix": false, "disable_gpg_check": false, "disable_plugin": [], "disablerepo": [], "download_only": false, "enable_plugin": [], "enablerepo": [], "exclude": [], "installroot": "/", "install_repoquery": true, "install_weak_deps": true, "security": false, "skip_broken": false, "update_cache": false, "update_only": false, "validate_certs": true, "lock_timeout": 30, "allowerasing": false, "nobest": false, "conf_file": null, "disable_excludes": null, "download_dir": null, "list": null, "releasever": null}}}\r\n', b'Shared connection to redhat1.mshome.net closed.\r\n')
+2021-08-01 23:33:02,860 p=4167 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:02,861 p=4167 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'rm -f -r /home/devops/.ansible/tmp/ansible-tmp-1627835576.9006505-4167-166663171235873/ > /dev/null 2>&1 && sleep 0'"'"''
+2021-08-01 23:33:02,886 p=4167 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:33:02,889 p=4142 u=teguh n=ansible | ok: [redhat1.mshome.net] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "allow_downgrade": false,
+            "allowerasing": false,
+            "autoremove": false,
+            "bugfix": false,
+            "conf_file": null,
+            "disable_excludes": null,
+            "disable_gpg_check": false,
+            "disable_plugin": [],
+            "disablerepo": [],
+            "download_dir": null,
+            "download_only": false,
+            "enable_plugin": [],
+            "enablerepo": [],
+            "exclude": [],
+            "install_repoquery": true,
+            "install_weak_deps": true,
+            "installroot": "/",
+            "list": null,
+            "lock_timeout": 30,
+            "name": [
+                "firewalld"
+            ],
+            "nobest": false,
+            "releasever": null,
+            "security": false,
+            "skip_broken": false,
+            "state": "installed",
+            "update_cache": false,
+            "update_only": false,
+            "validate_certs": true
+        }
+    },
+    "msg": "Nothing to do",
+    "rc": 0,
+    "results": []
+}
+2021-08-01 23:33:02,911 p=4142 u=teguh n=ansible | TASK [debug install_state variable] **************************************************************************************************
+2021-08-01 23:33:02,922 p=4142 u=teguh n=ansible | ok: [redhat1.mshome.net] => {
+    "msg": "The statefor the sambaservice is installed"
+}
+2021-08-01 23:33:02,942 p=4142 u=teguh n=ansible | TASK [start samba] *******************************************************************************************************************
+2021-08-01 23:33:02,968 p=4184 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:02,970 p=4184 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'echo ~devops && sleep 0'"'"''
+2021-08-01 23:33:02,998 p=4184 u=teguh n=ansible | <redhat1.mshome.net> (0, b'/home/devops\n', b'')
+2021-08-01 23:33:02,998 p=4184 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:02,999 p=4184 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/devops/.ansible/tmp `"&& mkdir "` echo /home/devops/.ansible/tmp/ansible-tmp-1627835582.9987128-4184-213287278122016 `" && echo ansible-tmp-1627835582.9987128-4184-213287278122016="` echo /home/devops/.ansible/tmp/ansible-tmp-1627835582.9987128-4184-213287278122016 `" ) && sleep 0'"'"''
+2021-08-01 23:33:03,032 p=4184 u=teguh n=ansible | <redhat1.mshome.net> (0, b'ansible-tmp-1627835582.9987128-4184-213287278122016=/home/devops/.ansible/tmp/ansible-tmp-1627835582.9987128-4184-213287278122016\n', b'')
+2021-08-01 23:33:03,252 p=4184 u=teguh n=ansible | Using module file /home/teguh/virtualenvs/ansible/lib/python3.8/site-packages/ansible/modules/systemd.py
+2021-08-01 23:33:03,253 p=4184 u=teguh n=ansible | <redhat1.mshome.net> PUT /home/teguh/.ansible/tmp/ansible-local-41427xf_xzo3/tmpwwlt9gbf TO /home/devops/.ansible/tmp/ansible-tmp-1627835582.9987128-4184-213287278122016/AnsiballZ_systemd.py
+2021-08-01 23:33:03,254 p=4184 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d '[redhat1.mshome.net]'
+2021-08-01 23:33:03,300 p=4184 u=teguh n=ansible | <redhat1.mshome.net> (0, b'sftp> put /home/teguh/.ansible/tmp/ansible-local-41427xf_xzo3/tmpwwlt9gbf /home/devops/.ansible/tmp/ansible-tmp-1627835582.9987128-4184-213287278122016/AnsiballZ_systemd.py\n', b'')
+2021-08-01 23:33:03,300 p=4184 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:03,301 p=4184 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'chmod u+x /home/devops/.ansible/tmp/ansible-tmp-1627835582.9987128-4184-213287278122016/ /home/devops/.ansible/tmp/ansible-tmp-1627835582.9987128-4184-213287278122016/AnsiballZ_systemd.py && sleep 0'"'"''
+2021-08-01 23:33:03,325 p=4184 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:33:03,326 p=4184 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:03,326 p=4184 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d -tt redhat1.mshome.net '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-xpgsamskwojhbvrizuplmyzdatustrpg ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627835582.9987128-4184-213287278122016/AnsiballZ_systemd.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+2021-08-01 23:33:03,367 p=4184 u=teguh n=ansible | Escalation succeeded
+2021-08-01 23:33:03,596 p=4184 u=teguh n=ansible | <redhat1.mshome.net> (0, b'\r\n{"name": "smb", "changed": false, "status": {"Type": "notify", "Restart": "no", "PIDFile": "/run/smbd.pid", "NotifyAccess": "main", "RestartUSec": "100ms", "TimeoutStartUSec": "1min 30s", "TimeoutStopUSec": "1min 30s", "RuntimeMaxUSec": "infinity", "WatchdogUSec": "0", "WatchdogTimestamp": "Sun 2021-08-01 12:32:32 EDT", "WatchdogTimestampMonotonic": "14498423270", "PermissionsStartOnly": "no", "RootDirectoryStartOnly": "no", "RemainAfterExit": "no", "GuessMainPID": "yes", "MainPID": "13272", "ControlPID": "0", "FileDescriptorStoreMax": "0", "NFileDescriptorStore": "0", "StatusText": "smbd: ready to serve connections...", "StatusErrno": "0", "Result": "success", "UID": "[not set]", "GID": "[not set]", "NRestarts": "0", "ExecMainStartTimestamp": "Sun 2021-08-01 12:32:32 EDT", "ExecMainStartTimestampMonotonic": "14498288572", "ExecMainExitTimestampMonotonic": "0", "ExecMainPID": "13272", "ExecMainCode": "0", "ExecMainStatus": "0", "ExecStart": "{ path=/usr/sbin/smbd ; argv[]=/usr/sbin/smbd --foreground --no-process-group $SMBDOPTIONS ; ignore_errors=no ; start_time=[Sun 2021-08-01 12:32:32 EDT] ; stop_time=[n/a] ; pid=13272 ; code=(null) ; status=0/0 }", "ExecReload": "{ path=/bin/kill ; argv[]=/bin/kill -HUP $MAINPID ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }", "Slice": "system.slice", "ControlGroup": "/system.slice/smb.service", "MemoryCurrent": "12304384", "CPUUsageNSec": "[not set]", "EffectiveCPUs": "", "EffectiveMemoryNodes": "", "TasksCurrent": "4", "IPIngressBytes": "18446744073709551615", "IPIngressPackets": "18446744073709551615", "IPEgressBytes": "18446744073709551615", "IPEgressPackets": "18446744073709551615", "Delegate": "no", "CPUAccounting": "no", "CPUWeight": "[not set]", "StartupCPUWeight": "[not set]", "CPUShares": "[not set]", "StartupCPUShares": "[not set]", "CPUQuotaPerSecUSec": "infinity", "CPUQuotaPeriodUSec": "infinity", "AllowedCPUs": "", "AllowedMemoryNodes": "", "IOAccounting": "no", "IOWeight": "[not set]", "StartupIOWeight": "[not set]", "BlockIOAccounting": "no", "BlockIOWeight": "[not set]", "StartupBlockIOWeight": "[not set]", "MemoryAccounting": "yes", "DefaultMemoryLow": "0", "DefaultMemoryMin": "0", "MemoryMin": "0", "MemoryLow": "0", "MemoryHigh": "infinity", "MemoryMax": "infinity", "MemorySwapMax": "infinity", "MemoryLimit": "infinity", "DevicePolicy": "auto", "TasksAccounting": "yes", "TasksMax": "10894", "IPAccounting": "no", "Environment": "KRB5CCNAME=FILE:/run/samba/krb5cc_samba", "EnvironmentFiles": "/etc/sysconfig/samba (ignore_errors=yes)", "UMask": "0022", "LimitCPU": "infinity", "LimitCPUSoft": "infinity", "LimitFSIZE": "infinity", "LimitFSIZESoft": "infinity", "LimitDATA": "infinity", "LimitDATASoft": "infinity", "LimitSTACK": "infinity", "LimitSTACKSoft": "8388608", "LimitCORE": "infinity", "LimitCORESoft": "infinity", "LimitRSS": "infinity", "LimitRSSSoft": "infinity", "LimitNOFILE": "16384", "LimitNOFILESoft": "16384", "LimitAS": "infinity", "LimitASSoft": "infinity", "LimitNPROC": "6809", "LimitNPROCSoft": "6809", "LimitMEMLOCK": "65536", "LimitMEMLOCKSoft": "65536", "LimitLOCKS": "infinity", "LimitLOCKSSoft": "infinity", "LimitSIGPENDING": "6809", "LimitSIGPENDINGSoft": "6809", "LimitMSGQUEUE": "819200", "LimitMSGQUEUESoft": "819200", "LimitNICE": "0", "LimitNICESoft": "0", "LimitRTPRIO": "0", "LimitRTPRIOSoft": "0", "LimitRTTIME": "infinity", "LimitRTTIMESoft": "infinity", "OOMScoreAdjust": "0", "Nice": "0", "IOSchedulingClass": "0", "IOSchedulingPriority": "0", "CPUSchedulingPolicy": "0", "CPUSchedulingPriority": "0", "CPUAffinity": "", "NUMAPolicy": "n/a", "NUMAMask": "", "TimerSlackNSec": "50000", "CPUSchedulingResetOnFork": "no", "NonBlocking": "no", "StandardInput": "null", "StandardInputData": "", "StandardOutput": "journal", "StandardError": "inherit", "TTYReset": "no", "TTYVHangup": "no", "TTYVTDisallocate": "no", "SyslogPriority": "30", "SyslogLevelPrefix": "yes", "SyslogLevel": "6", "SyslogFacility": "3", "LogLevelMax": "-1", "LogRateLimitIntervalUSec": "0", "LogRateLimitBurst": "0", "SecureBits": "0", "CapabilityBoundingSet": "cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend", "AmbientCapabilities": "", "DynamicUser": "no", "RemoveIPC": "no", "MountFlags": "", "PrivateTmp": "no", "PrivateDevices": "no", "ProtectKernelTunables": "no", "ProtectKernelModules": "no", "ProtectControlGroups": "no", "PrivateNetwork": "no", "PrivateUsers": "no", "PrivateMounts": "no", "ProtectHome": "no", "ProtectSystem": "no", "SameProcessGroup": "no", "UtmpMode": "init", "IgnoreSIGPIPE": "yes", "NoNewPrivileges": "no", "SystemCallErrorNumber": "0", "LockPersonality": "no", "RuntimeDirectoryPreserve": "no", "RuntimeDirectoryMode": "0755", "StateDirectoryMode": "0755", "CacheDirectoryMode": "0755", "LogsDirectoryMode": "0755", "ConfigurationDirectoryMode": "0755", "MemoryDenyWriteExecute": "no", "RestrictRealtime": "no", "RestrictSUIDSGID": "no", "RestrictNamespaces": "no", "MountAPIVFS": "no", "KeyringMode": "private", "KillMode": "control-group", "KillSignal": "15", "SendSIGKILL": "yes", "SendSIGHUP": "no", "Id": "smb.service", "Names": "smb.service", "Requires": "system.slice sysinit.target", "Wants": "network-online.target", "WantedBy": "multi-user.target", "Conflicts": "shutdown.target", "Before": "multi-user.target shutdown.target", "After": "winbind.service network.target basic.target sysinit.target systemd-journald.socket nmb.service system.slice network-online.target", "Documentation": "man:smbd(8) man:samba(7) man:smb.conf(5)", "Description": "Samba SMB Daemon", "LoadState": "loaded", "ActiveState": "active", "FreezerState": "running", "SubState": "running", "FragmentPath": "/usr/lib/systemd/system/smb.service", "UnitFileState": "enabled", "UnitFilePreset": "disabled", "StateChangeTimestamp": "Sun 2021-08-01 12:32:32 EDT", "StateChangeTimestampMonotonic": "14498423273", "InactiveExitTimestamp": "Sun 2021-08-01 12:32:32 EDT", "InactiveExitTimestampMonotonic": "14498288596", "ActiveEnterTimestamp": "Sun 2021-08-01 12:32:32 EDT", "ActiveEnterTimestampMonotonic": "14498423273", "ActiveExitTimestampMonotonic": "0", "InactiveEnterTimestampMonotonic": "0", "CanStart": "yes", "CanStop": "yes", "CanReload": "yes", "CanIsolate": "no", "CanFreeze": "yes", "StopWhenUnneeded": "no", "RefuseManualStart": "no", "RefuseManualStop": "no", "AllowIsolate": "no", "DefaultDependencies": "yes", "OnFailureJobMode": "replace", "IgnoreOnIsolate": "no", "NeedDaemonReload": "no", "JobTimeoutUSec": "infinity", "JobRunningTimeoutUSec": "infinity", "JobTimeoutAction": "none", "ConditionResult": "yes", "AssertResult": "yes", "ConditionTimestamp": "Sun 2021-08-01 12:32:32 EDT", "ConditionTimestampMonotonic": "14498287870", "AssertTimestamp": "Sun 2021-08-01 12:32:32 EDT", "AssertTimestampMonotonic": "14498287870", "Transient": "no", "Perpetual": "no", "StartLimitIntervalUSec": "10s", "StartLimitBurst": "5", "StartLimitAction": "none", "FailureAction": "none", "SuccessAction": "none", "InvocationID": "c75a0cfabb7b412e890f9b6649ad87d1", "CollectMode": "inactive"}, "enabled": true, "state": "started", "invocation": {"module_args": {"name": "smb", "state": "started", "enabled": true, "daemon_reload": false, "daemon_reexec": false, "scope": "system", "no_block": false, "force": null, "masked": null}}}\r\n', b'Shared connection to redhat1.mshome.net closed.\r\n')
+2021-08-01 23:33:03,597 p=4184 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:03,598 p=4184 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'rm -f -r /home/devops/.ansible/tmp/ansible-tmp-1627835582.9987128-4184-213287278122016/ > /dev/null 2>&1 && sleep 0'"'"''
+2021-08-01 23:33:03,622 p=4184 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:33:03,627 p=4142 u=teguh n=ansible | ok: [redhat1.mshome.net] => {
+    "changed": false,
+    "enabled": true,
+    "invocation": {
+        "module_args": {
+            "daemon_reexec": false,
+            "daemon_reload": false,
+            "enabled": true,
+            "force": null,
+            "masked": null,
+            "name": "smb",
+            "no_block": false,
+            "scope": "system",
+            "state": "started"
+        }
+    },
+    "name": "smb",
+    "state": "started",
+    "status": {
+        "ActiveEnterTimestamp": "Sun 2021-08-01 12:32:32 EDT",
+        "ActiveEnterTimestampMonotonic": "14498423273",
+        "ActiveExitTimestampMonotonic": "0",
+        "ActiveState": "active",
+        "After": "winbind.service network.target basic.target sysinit.target systemd-journald.socket nmb.service system.slice network-online.target",
+        "AllowIsolate": "no",
+        "AllowedCPUs": "",
+        "AllowedMemoryNodes": "",
+        "AmbientCapabilities": "",
+        "AssertResult": "yes",
+        "AssertTimestamp": "Sun 2021-08-01 12:32:32 EDT",
+        "AssertTimestampMonotonic": "14498287870",
+        "Before": "multi-user.target shutdown.target",
+        "BlockIOAccounting": "no",
+        "BlockIOWeight": "[not set]",
+        "CPUAccounting": "no",
+        "CPUAffinity": "",
+        "CPUQuotaPerSecUSec": "infinity",
+        "CPUQuotaPeriodUSec": "infinity",
+        "CPUSchedulingPolicy": "0",
+        "CPUSchedulingPriority": "0",
+        "CPUSchedulingResetOnFork": "no",
+        "CPUShares": "[not set]",
+        "CPUUsageNSec": "[not set]",
+        "CPUWeight": "[not set]",
+        "CacheDirectoryMode": "0755",
+        "CanFreeze": "yes",
+        "CanIsolate": "no",
+        "CanReload": "yes",
+        "CanStart": "yes",
+        "CanStop": "yes",
+        "CapabilityBoundingSet": "cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend",
+        "CollectMode": "inactive",
+        "ConditionResult": "yes",
+        "ConditionTimestamp": "Sun 2021-08-01 12:32:32 EDT",
+        "ConditionTimestampMonotonic": "14498287870",
+        "ConfigurationDirectoryMode": "0755",
+        "Conflicts": "shutdown.target",
+        "ControlGroup": "/system.slice/smb.service",
+        "ControlPID": "0",
+        "DefaultDependencies": "yes",
+        "DefaultMemoryLow": "0",
+        "DefaultMemoryMin": "0",
+        "Delegate": "no",
+        "Description": "Samba SMB Daemon",
+        "DevicePolicy": "auto",
+        "Documentation": "man:smbd(8) man:samba(7) man:smb.conf(5)",
+        "DynamicUser": "no",
+        "EffectiveCPUs": "",
+        "EffectiveMemoryNodes": "",
+        "Environment": "KRB5CCNAME=FILE:/run/samba/krb5cc_samba",
+        "EnvironmentFiles": "/etc/sysconfig/samba (ignore_errors=yes)",
+        "ExecMainCode": "0",
+        "ExecMainExitTimestampMonotonic": "0",
+        "ExecMainPID": "13272",
+        "ExecMainStartTimestamp": "Sun 2021-08-01 12:32:32 EDT",
+        "ExecMainStartTimestampMonotonic": "14498288572",
+        "ExecMainStatus": "0",
+        "ExecReload": "{ path=/bin/kill ; argv[]=/bin/kill -HUP $MAINPID ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "ExecStart": "{ path=/usr/sbin/smbd ; argv[]=/usr/sbin/smbd --foreground --no-process-group $SMBDOPTIONS ; ignore_errors=no ; start_time=[Sun 2021-08-01 12:32:32 EDT] ; stop_time=[n/a] ; pid=13272 ; code=(null) ; status=0/0 }",
+        "FailureAction": "none",
+        "FileDescriptorStoreMax": "0",
+        "FragmentPath": "/usr/lib/systemd/system/smb.service",
+        "FreezerState": "running",
+        "GID": "[not set]",
+        "GuessMainPID": "yes",
+        "IOAccounting": "no",
+        "IOSchedulingClass": "0",
+        "IOSchedulingPriority": "0",
+        "IOWeight": "[not set]",
+        "IPAccounting": "no",
+        "IPEgressBytes": "18446744073709551615",
+        "IPEgressPackets": "18446744073709551615",
+        "IPIngressBytes": "18446744073709551615",
+        "IPIngressPackets": "18446744073709551615",
+        "Id": "smb.service",
+        "IgnoreOnIsolate": "no",
+        "IgnoreSIGPIPE": "yes",
+        "InactiveEnterTimestampMonotonic": "0",
+        "InactiveExitTimestamp": "Sun 2021-08-01 12:32:32 EDT",
+        "InactiveExitTimestampMonotonic": "14498288596",
+        "InvocationID": "c75a0cfabb7b412e890f9b6649ad87d1",
+        "JobRunningTimeoutUSec": "infinity",
+        "JobTimeoutAction": "none",
+        "JobTimeoutUSec": "infinity",
+        "KeyringMode": "private",
+        "KillMode": "control-group",
+        "KillSignal": "15",
+        "LimitAS": "infinity",
+        "LimitASSoft": "infinity",
+        "LimitCORE": "infinity",
+        "LimitCORESoft": "infinity",
+        "LimitCPU": "infinity",
+        "LimitCPUSoft": "infinity",
+        "LimitDATA": "infinity",
+        "LimitDATASoft": "infinity",
+        "LimitFSIZE": "infinity",
+        "LimitFSIZESoft": "infinity",
+        "LimitLOCKS": "infinity",
+        "LimitLOCKSSoft": "infinity",
+        "LimitMEMLOCK": "65536",
+        "LimitMEMLOCKSoft": "65536",
+        "LimitMSGQUEUE": "819200",
+        "LimitMSGQUEUESoft": "819200",
+        "LimitNICE": "0",
+        "LimitNICESoft": "0",
+        "LimitNOFILE": "16384",
+        "LimitNOFILESoft": "16384",
+        "LimitNPROC": "6809",
+        "LimitNPROCSoft": "6809",
+        "LimitRSS": "infinity",
+        "LimitRSSSoft": "infinity",
+        "LimitRTPRIO": "0",
+        "LimitRTPRIOSoft": "0",
+        "LimitRTTIME": "infinity",
+        "LimitRTTIMESoft": "infinity",
+        "LimitSIGPENDING": "6809",
+        "LimitSIGPENDINGSoft": "6809",
+        "LimitSTACK": "infinity",
+        "LimitSTACKSoft": "8388608",
+        "LoadState": "loaded",
+        "LockPersonality": "no",
+        "LogLevelMax": "-1",
+        "LogRateLimitBurst": "0",
+        "LogRateLimitIntervalUSec": "0",
+        "LogsDirectoryMode": "0755",
+        "MainPID": "13272",
+        "MemoryAccounting": "yes",
+        "MemoryCurrent": "12304384",
+        "MemoryDenyWriteExecute": "no",
+        "MemoryHigh": "infinity",
+        "MemoryLimit": "infinity",
+        "MemoryLow": "0",
+        "MemoryMax": "infinity",
+        "MemoryMin": "0",
+        "MemorySwapMax": "infinity",
+        "MountAPIVFS": "no",
+        "MountFlags": "",
+        "NFileDescriptorStore": "0",
+        "NRestarts": "0",
+        "NUMAMask": "",
+        "NUMAPolicy": "n/a",
+        "Names": "smb.service",
+        "NeedDaemonReload": "no",
+        "Nice": "0",
+        "NoNewPrivileges": "no",
+        "NonBlocking": "no",
+        "NotifyAccess": "main",
+        "OOMScoreAdjust": "0",
+        "OnFailureJobMode": "replace",
+        "PIDFile": "/run/smbd.pid",
+        "PermissionsStartOnly": "no",
+        "Perpetual": "no",
+        "PrivateDevices": "no",
+        "PrivateMounts": "no",
+        "PrivateNetwork": "no",
+        "PrivateTmp": "no",
+        "PrivateUsers": "no",
+        "ProtectControlGroups": "no",
+        "ProtectHome": "no",
+        "ProtectKernelModules": "no",
+        "ProtectKernelTunables": "no",
+        "ProtectSystem": "no",
+        "RefuseManualStart": "no",
+        "RefuseManualStop": "no",
+        "RemainAfterExit": "no",
+        "RemoveIPC": "no",
+        "Requires": "system.slice sysinit.target",
+        "Restart": "no",
+        "RestartUSec": "100ms",
+        "RestrictNamespaces": "no",
+        "RestrictRealtime": "no",
+        "RestrictSUIDSGID": "no",
+        "Result": "success",
+        "RootDirectoryStartOnly": "no",
+        "RuntimeDirectoryMode": "0755",
+        "RuntimeDirectoryPreserve": "no",
+        "RuntimeMaxUSec": "infinity",
+        "SameProcessGroup": "no",
+        "SecureBits": "0",
+        "SendSIGHUP": "no",
+        "SendSIGKILL": "yes",
+        "Slice": "system.slice",
+        "StandardError": "inherit",
+        "StandardInput": "null",
+        "StandardInputData": "",
+        "StandardOutput": "journal",
+        "StartLimitAction": "none",
+        "StartLimitBurst": "5",
+        "StartLimitIntervalUSec": "10s",
+        "StartupBlockIOWeight": "[not set]",
+        "StartupCPUShares": "[not set]",
+        "StartupCPUWeight": "[not set]",
+        "StartupIOWeight": "[not set]",
+        "StateChangeTimestamp": "Sun 2021-08-01 12:32:32 EDT",
+        "StateChangeTimestampMonotonic": "14498423273",
+        "StateDirectoryMode": "0755",
+        "StatusErrno": "0",
+        "StatusText": "smbd: ready to serve connections...",
+        "StopWhenUnneeded": "no",
+        "SubState": "running",
+        "SuccessAction": "none",
+        "SyslogFacility": "3",
+        "SyslogLevel": "6",
+        "SyslogLevelPrefix": "yes",
+        "SyslogPriority": "30",
+        "SystemCallErrorNumber": "0",
+        "TTYReset": "no",
+        "TTYVHangup": "no",
+        "TTYVTDisallocate": "no",
+        "TasksAccounting": "yes",
+        "TasksCurrent": "4",
+        "TasksMax": "10894",
+        "TimeoutStartUSec": "1min 30s",
+        "TimeoutStopUSec": "1min 30s",
+        "TimerSlackNSec": "50000",
+        "Transient": "no",
+        "Type": "notify",
+        "UID": "[not set]",
+        "UMask": "0022",
+        "UnitFilePreset": "disabled",
+        "UnitFileState": "enabled",
+        "UtmpMode": "init",
+        "WantedBy": "multi-user.target",
+        "Wants": "network-online.target",
+        "WatchdogTimestamp": "Sun 2021-08-01 12:32:32 EDT",
+        "WatchdogTimestampMonotonic": "14498423270",
+        "WatchdogUSec": "0"
+    }
+}
+2021-08-01 23:33:03,648 p=4142 u=teguh n=ansible | TASK [start firewalld] ***************************************************************************************************************
+2021-08-01 23:33:03,660 p=4197 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:03,661 p=4197 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'echo ~devops && sleep 0'"'"''
+2021-08-01 23:33:03,687 p=4197 u=teguh n=ansible | <redhat1.mshome.net> (0, b'/home/devops\n', b'')
+2021-08-01 23:33:03,688 p=4197 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:03,689 p=4197 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/devops/.ansible/tmp `"&& mkdir "` echo /home/devops/.ansible/tmp/ansible-tmp-1627835583.688429-4197-245898301304127 `" && echo ansible-tmp-1627835583.688429-4197-245898301304127="` echo /home/devops/.ansible/tmp/ansible-tmp-1627835583.688429-4197-245898301304127 `" ) && sleep 0'"'"''
+2021-08-01 23:33:03,718 p=4197 u=teguh n=ansible | <redhat1.mshome.net> (0, b'ansible-tmp-1627835583.688429-4197-245898301304127=/home/devops/.ansible/tmp/ansible-tmp-1627835583.688429-4197-245898301304127\n', b'')
+2021-08-01 23:33:03,720 p=4197 u=teguh n=ansible | Using module file /home/teguh/virtualenvs/ansible/lib/python3.8/site-packages/ansible/modules/systemd.py
+2021-08-01 23:33:03,721 p=4197 u=teguh n=ansible | <redhat1.mshome.net> PUT /home/teguh/.ansible/tmp/ansible-local-41427xf_xzo3/tmpbfpt9jx2 TO /home/devops/.ansible/tmp/ansible-tmp-1627835583.688429-4197-245898301304127/AnsiballZ_systemd.py
+2021-08-01 23:33:03,722 p=4197 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d '[redhat1.mshome.net]'
+2021-08-01 23:33:03,765 p=4197 u=teguh n=ansible | <redhat1.mshome.net> (0, b'sftp> put /home/teguh/.ansible/tmp/ansible-local-41427xf_xzo3/tmpbfpt9jx2 /home/devops/.ansible/tmp/ansible-tmp-1627835583.688429-4197-245898301304127/AnsiballZ_systemd.py\n', b'')
+2021-08-01 23:33:03,766 p=4197 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:03,766 p=4197 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'chmod u+x /home/devops/.ansible/tmp/ansible-tmp-1627835583.688429-4197-245898301304127/ /home/devops/.ansible/tmp/ansible-tmp-1627835583.688429-4197-245898301304127/AnsiballZ_systemd.py && sleep 0'"'"''
+2021-08-01 23:33:03,792 p=4197 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:33:03,792 p=4197 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:03,793 p=4197 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d -tt redhat1.mshome.net '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-nefbomiurnnafqjriqvdpvlimuraupat ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627835583.688429-4197-245898301304127/AnsiballZ_systemd.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+2021-08-01 23:33:03,833 p=4197 u=teguh n=ansible | Escalation succeeded
+2021-08-01 23:33:04,083 p=4197 u=teguh n=ansible | <redhat1.mshome.net> (0, b'\r\n{"name": "firewalld", "changed": false, "status": {"Type": "dbus", "Restart": "no", "NotifyAccess": "none", "RestartUSec": "100ms", "TimeoutStartUSec": "1min 30s", "TimeoutStopUSec": "1min 30s", "RuntimeMaxUSec": "infinity", "WatchdogUSec": "0", "WatchdogTimestamp": "Sun 2021-08-01 08:31:01 EDT", "WatchdogTimestampMonotonic": "6806198", "PermissionsStartOnly": "no", "RootDirectoryStartOnly": "no", "RemainAfterExit": "no", "GuessMainPID": "yes", "MainPID": "910", "ControlPID": "0", "BusName": "org.fedoraproject.FirewallD1", "FileDescriptorStoreMax": "0", "NFileDescriptorStore": "0", "StatusErrno": "0", "Result": "success", "UID": "[not set]", "GID": "[not set]", "NRestarts": "0", "ExecMainStartTimestamp": "Sun 2021-08-01 08:31:00 EDT", "ExecMainStartTimestampMonotonic": "5787858", "ExecMainExitTimestampMonotonic": "0", "ExecMainPID": "910", "ExecMainCode": "0", "ExecMainStatus": "0", "ExecStart": "{ path=/usr/sbin/firewalld ; argv[]=/usr/sbin/firewalld --nofork --nopid $FIREWALLD_ARGS ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }", "ExecReload": "{ path=/bin/kill ; argv[]=/bin/kill -HUP $MAINPID ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }", "Slice": "system.slice", "ControlGroup": "/system.slice/firewalld.service", "MemoryCurrent": "38907904", "CPUUsageNSec": "[not set]", "EffectiveCPUs": "", "EffectiveMemoryNodes": "", "TasksCurrent": "2", "IPIngressBytes": "18446744073709551615", "IPIngressPackets": "18446744073709551615", "IPEgressBytes": "18446744073709551615", "IPEgressPackets": "18446744073709551615", "Delegate": "no", "CPUAccounting": "no", "CPUWeight": "[not set]", "StartupCPUWeight": "[not set]", "CPUShares": "[not set]", "StartupCPUShares": "[not set]", "CPUQuotaPerSecUSec": "infinity", "CPUQuotaPeriodUSec": "infinity", "AllowedCPUs": "", "AllowedMemoryNodes": "", "IOAccounting": "no", "IOWeight": "[not set]", "StartupIOWeight": "[not set]", "BlockIOAccounting": "no", "BlockIOWeight": "[not set]", "StartupBlockIOWeight": "[not set]", "MemoryAccounting": "yes", "DefaultMemoryLow": "0", "DefaultMemoryMin": "0", "MemoryMin": "0", "MemoryLow": "0", "MemoryHigh": "infinity", "MemoryMax": "infinity", "MemorySwapMax": "infinity", "MemoryLimit": "infinity", "DevicePolicy": "auto", "TasksAccounting": "yes", "TasksMax": "10894", "IPAccounting": "no", "EnvironmentFiles": "/etc/sysconfig/firewalld (ignore_errors=yes)", "UMask": "0022", "LimitCPU": "infinity", "LimitCPUSoft": "infinity", "LimitFSIZE": "infinity", "LimitFSIZESoft": "infinity", "LimitDATA": "infinity", "LimitDATASoft": "infinity", "LimitSTACK": "infinity", "LimitSTACKSoft": "8388608", "LimitCORE": "infinity", "LimitCORESoft": "infinity", "LimitRSS": "infinity", "LimitRSSSoft": "infinity", "LimitNOFILE": "262144", "LimitNOFILESoft": "1024", "LimitAS": "infinity", "LimitASSoft": "infinity", "LimitNPROC": "6809", "LimitNPROCSoft": "6809", "LimitMEMLOCK": "65536", "LimitMEMLOCKSoft": "65536", "LimitLOCKS": "infinity", "LimitLOCKSSoft": "infinity", "LimitSIGPENDING": "6809", "LimitSIGPENDINGSoft": "6809", "LimitMSGQUEUE": "819200", "LimitMSGQUEUESoft": "819200", "LimitNICE": "0", "LimitNICESoft": "0", "LimitRTPRIO": "0", "LimitRTPRIOSoft": "0", "LimitRTTIME": "infinity", "LimitRTTIMESoft": "infinity", "OOMScoreAdjust": "0", "Nice": "0", "IOSchedulingClass": "0", "IOSchedulingPriority": "0", "CPUSchedulingPolicy": "0", "CPUSchedulingPriority": "0", "CPUAffinity": "", "NUMAPolicy": "n/a", "NUMAMask": "", "TimerSlackNSec": "50000", "CPUSchedulingResetOnFork": "no", "NonBlocking": "no", "StandardInput": "null", "StandardInputData": "", "StandardOutput": "null", "StandardError": "null", "TTYReset": "no", "TTYVHangup": "no", "TTYVTDisallocate": "no", "SyslogPriority": "30", "SyslogLevelPrefix": "yes", "SyslogLevel": "6", "SyslogFacility": "3", "LogLevelMax": "-1", "LogRateLimitIntervalUSec": "0", "LogRateLimitBurst": "0", "SecureBits": "0", "CapabilityBoundingSet": "cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend", "AmbientCapabilities": "", "DynamicUser": "no", "RemoveIPC": "no", "MountFlags": "", "PrivateTmp": "no", "PrivateDevices": "no", "ProtectKernelTunables": "no", "ProtectKernelModules": "no", "ProtectControlGroups": "no", "PrivateNetwork": "no", "PrivateUsers": "no", "PrivateMounts": "no", "ProtectHome": "no", "ProtectSystem": "no", "SameProcessGroup": "no", "UtmpMode": "init", "IgnoreSIGPIPE": "yes", "NoNewPrivileges": "no", "SystemCallErrorNumber": "0", "LockPersonality": "no", "RuntimeDirectoryPreserve": "no", "RuntimeDirectoryMode": "0755", "StateDirectoryMode": "0755", "CacheDirectoryMode": "0755", "LogsDirectoryMode": "0755", "ConfigurationDirectoryMode": "0755", "MemoryDenyWriteExecute": "no", "RestrictRealtime": "no", "RestrictSUIDSGID": "no", "RestrictNamespaces": "no", "MountAPIVFS": "no", "KeyringMode": "private", "KillMode": "mixed", "KillSignal": "15", "SendSIGKILL": "yes", "SendSIGHUP": "no", "Id": "firewalld.service", "Names": "firewalld.service", "Requires": "sysinit.target system.slice dbus.socket", "Wants": "network-pre.target", "WantedBy": "multi-user.target", "Conflicts": "ip6tables.service ebtables.service shutdown.target iptables.service ipset.service nftables.service", "Before": "network-pre.target shutdown.target multi-user.target", "After": "sysinit.target polkit.service system.slice dbus.socket dbus.service basic.target", "Documentation": "man:firewalld(1)", "Description": "firewalld - dynamic firewall daemon", "LoadState": "loaded", "ActiveState": "active", "FreezerState": "running", "SubState": "running", "FragmentPath": "/usr/lib/systemd/system/firewalld.service", "UnitFileState": "enabled", "UnitFilePreset": "enabled", "StateChangeTimestamp": "Sun 2021-08-01 08:31:01 EDT", "StateChangeTimestampMonotonic": "6806199", "InactiveExitTimestamp": "Sun 2021-08-01 08:31:00 EDT", "InactiveExitTimestampMonotonic": "5787894", "ActiveEnterTimestamp": "Sun 2021-08-01 08:31:01 EDT", "ActiveEnterTimestampMonotonic": "6806199", "ActiveExitTimestampMonotonic": "0", "InactiveEnterTimestampMonotonic": "0", "CanStart": "yes", "CanStop": "yes", "CanReload": "yes", "CanIsolate": "no", "CanFreeze": "yes", "StopWhenUnneeded": "no", "RefuseManualStart": "no", "RefuseManualStop": "no", "AllowIsolate": "no", "DefaultDependencies": "yes", "OnFailureJobMode": "replace", "IgnoreOnIsolate": "no", "NeedDaemonReload": "no", "JobTimeoutUSec": "infinity", "JobRunningTimeoutUSec": "infinity", "JobTimeoutAction": "none", "ConditionResult": "yes", "AssertResult": "yes", "ConditionTimestamp": "Sun 2021-08-01 08:31:00 EDT", "ConditionTimestampMonotonic": "5786709", "AssertTimestamp": "Sun 2021-08-01 08:31:00 EDT", "AssertTimestampMonotonic": "5786709", "Transient": "no", "Perpetual": "no", "StartLimitIntervalUSec": "10s", "StartLimitBurst": "5", "StartLimitAction": "none", "FailureAction": "none", "SuccessAction": "none", "InvocationID": "f249d35804f34fe48b2124a92400f6b7", "CollectMode": "inactive"}, "enabled": true, "state": "started", "invocation": {"module_args": {"name": "firewalld", "state": "started", "enabled": true, "daemon_reload": false, "daemon_reexec": false, "scope": "system", "no_block": false, "force": null, "masked": null}}}\r\n', b'Shared connection to redhat1.mshome.net closed.\r\n')
+2021-08-01 23:33:04,084 p=4197 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:04,085 p=4197 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'rm -f -r /home/devops/.ansible/tmp/ansible-tmp-1627835583.688429-4197-245898301304127/ > /dev/null 2>&1 && sleep 0'"'"''
+2021-08-01 23:33:04,111 p=4197 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:33:04,116 p=4142 u=teguh n=ansible | ok: [redhat1.mshome.net] => {
+    "changed": false,
+    "enabled": true,
+    "invocation": {
+        "module_args": {
+            "daemon_reexec": false,
+            "daemon_reload": false,
+            "enabled": true,
+            "force": null,
+            "masked": null,
+            "name": "firewalld",
+            "no_block": false,
+            "scope": "system",
+            "state": "started"
+        }
+    },
+    "name": "firewalld",
+    "state": "started",
+    "status": {
+        "ActiveEnterTimestamp": "Sun 2021-08-01 08:31:01 EDT",
+        "ActiveEnterTimestampMonotonic": "6806199",
+        "ActiveExitTimestampMonotonic": "0",
+        "ActiveState": "active",
+        "After": "sysinit.target polkit.service system.slice dbus.socket dbus.service basic.target",
+        "AllowIsolate": "no",
+        "AllowedCPUs": "",
+        "AllowedMemoryNodes": "",
+        "AmbientCapabilities": "",
+        "AssertResult": "yes",
+        "AssertTimestamp": "Sun 2021-08-01 08:31:00 EDT",
+        "AssertTimestampMonotonic": "5786709",
+        "Before": "network-pre.target shutdown.target multi-user.target",
+        "BlockIOAccounting": "no",
+        "BlockIOWeight": "[not set]",
+        "BusName": "org.fedoraproject.FirewallD1",
+        "CPUAccounting": "no",
+        "CPUAffinity": "",
+        "CPUQuotaPerSecUSec": "infinity",
+        "CPUQuotaPeriodUSec": "infinity",
+        "CPUSchedulingPolicy": "0",
+        "CPUSchedulingPriority": "0",
+        "CPUSchedulingResetOnFork": "no",
+        "CPUShares": "[not set]",
+        "CPUUsageNSec": "[not set]",
+        "CPUWeight": "[not set]",
+        "CacheDirectoryMode": "0755",
+        "CanFreeze": "yes",
+        "CanIsolate": "no",
+        "CanReload": "yes",
+        "CanStart": "yes",
+        "CanStop": "yes",
+        "CapabilityBoundingSet": "cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend",
+        "CollectMode": "inactive",
+        "ConditionResult": "yes",
+        "ConditionTimestamp": "Sun 2021-08-01 08:31:00 EDT",
+        "ConditionTimestampMonotonic": "5786709",
+        "ConfigurationDirectoryMode": "0755",
+        "Conflicts": "ip6tables.service ebtables.service shutdown.target iptables.service ipset.service nftables.service",
+        "ControlGroup": "/system.slice/firewalld.service",
+        "ControlPID": "0",
+        "DefaultDependencies": "yes",
+        "DefaultMemoryLow": "0",
+        "DefaultMemoryMin": "0",
+        "Delegate": "no",
+        "Description": "firewalld - dynamic firewall daemon",
+        "DevicePolicy": "auto",
+        "Documentation": "man:firewalld(1)",
+        "DynamicUser": "no",
+        "EffectiveCPUs": "",
+        "EffectiveMemoryNodes": "",
+        "EnvironmentFiles": "/etc/sysconfig/firewalld (ignore_errors=yes)",
+        "ExecMainCode": "0",
+        "ExecMainExitTimestampMonotonic": "0",
+        "ExecMainPID": "910",
+        "ExecMainStartTimestamp": "Sun 2021-08-01 08:31:00 EDT",
+        "ExecMainStartTimestampMonotonic": "5787858",
+        "ExecMainStatus": "0",
+        "ExecReload": "{ path=/bin/kill ; argv[]=/bin/kill -HUP $MAINPID ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "ExecStart": "{ path=/usr/sbin/firewalld ; argv[]=/usr/sbin/firewalld --nofork --nopid $FIREWALLD_ARGS ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FailureAction": "none",
+        "FileDescriptorStoreMax": "0",
+        "FragmentPath": "/usr/lib/systemd/system/firewalld.service",
+        "FreezerState": "running",
+        "GID": "[not set]",
+        "GuessMainPID": "yes",
+        "IOAccounting": "no",
+        "IOSchedulingClass": "0",
+        "IOSchedulingPriority": "0",
+        "IOWeight": "[not set]",
+        "IPAccounting": "no",
+        "IPEgressBytes": "18446744073709551615",
+        "IPEgressPackets": "18446744073709551615",
+        "IPIngressBytes": "18446744073709551615",
+        "IPIngressPackets": "18446744073709551615",
+        "Id": "firewalld.service",
+        "IgnoreOnIsolate": "no",
+        "IgnoreSIGPIPE": "yes",
+        "InactiveEnterTimestampMonotonic": "0",
+        "InactiveExitTimestamp": "Sun 2021-08-01 08:31:00 EDT",
+        "InactiveExitTimestampMonotonic": "5787894",
+        "InvocationID": "f249d35804f34fe48b2124a92400f6b7",
+        "JobRunningTimeoutUSec": "infinity",
+        "JobTimeoutAction": "none",
+        "JobTimeoutUSec": "infinity",
+        "KeyringMode": "private",
+        "KillMode": "mixed",
+        "KillSignal": "15",
+        "LimitAS": "infinity",
+        "LimitASSoft": "infinity",
+        "LimitCORE": "infinity",
+        "LimitCORESoft": "infinity",
+        "LimitCPU": "infinity",
+        "LimitCPUSoft": "infinity",
+        "LimitDATA": "infinity",
+        "LimitDATASoft": "infinity",
+        "LimitFSIZE": "infinity",
+        "LimitFSIZESoft": "infinity",
+        "LimitLOCKS": "infinity",
+        "LimitLOCKSSoft": "infinity",
+        "LimitMEMLOCK": "65536",
+        "LimitMEMLOCKSoft": "65536",
+        "LimitMSGQUEUE": "819200",
+        "LimitMSGQUEUESoft": "819200",
+        "LimitNICE": "0",
+        "LimitNICESoft": "0",
+        "LimitNOFILE": "262144",
+        "LimitNOFILESoft": "1024",
+        "LimitNPROC": "6809",
+        "LimitNPROCSoft": "6809",
+        "LimitRSS": "infinity",
+        "LimitRSSSoft": "infinity",
+        "LimitRTPRIO": "0",
+        "LimitRTPRIOSoft": "0",
+        "LimitRTTIME": "infinity",
+        "LimitRTTIMESoft": "infinity",
+        "LimitSIGPENDING": "6809",
+        "LimitSIGPENDINGSoft": "6809",
+        "LimitSTACK": "infinity",
+        "LimitSTACKSoft": "8388608",
+        "LoadState": "loaded",
+        "LockPersonality": "no",
+        "LogLevelMax": "-1",
+        "LogRateLimitBurst": "0",
+        "LogRateLimitIntervalUSec": "0",
+        "LogsDirectoryMode": "0755",
+        "MainPID": "910",
+        "MemoryAccounting": "yes",
+        "MemoryCurrent": "38907904",
+        "MemoryDenyWriteExecute": "no",
+        "MemoryHigh": "infinity",
+        "MemoryLimit": "infinity",
+        "MemoryLow": "0",
+        "MemoryMax": "infinity",
+        "MemoryMin": "0",
+        "MemorySwapMax": "infinity",
+        "MountAPIVFS": "no",
+        "MountFlags": "",
+        "NFileDescriptorStore": "0",
+        "NRestarts": "0",
+        "NUMAMask": "",
+        "NUMAPolicy": "n/a",
+        "Names": "firewalld.service",
+        "NeedDaemonReload": "no",
+        "Nice": "0",
+        "NoNewPrivileges": "no",
+        "NonBlocking": "no",
+        "NotifyAccess": "none",
+        "OOMScoreAdjust": "0",
+        "OnFailureJobMode": "replace",
+        "PermissionsStartOnly": "no",
+        "Perpetual": "no",
+        "PrivateDevices": "no",
+        "PrivateMounts": "no",
+        "PrivateNetwork": "no",
+        "PrivateTmp": "no",
+        "PrivateUsers": "no",
+        "ProtectControlGroups": "no",
+        "ProtectHome": "no",
+        "ProtectKernelModules": "no",
+        "ProtectKernelTunables": "no",
+        "ProtectSystem": "no",
+        "RefuseManualStart": "no",
+        "RefuseManualStop": "no",
+        "RemainAfterExit": "no",
+        "RemoveIPC": "no",
+        "Requires": "sysinit.target system.slice dbus.socket",
+        "Restart": "no",
+        "RestartUSec": "100ms",
+        "RestrictNamespaces": "no",
+        "RestrictRealtime": "no",
+        "RestrictSUIDSGID": "no",
+        "Result": "success",
+        "RootDirectoryStartOnly": "no",
+        "RuntimeDirectoryMode": "0755",
+        "RuntimeDirectoryPreserve": "no",
+        "RuntimeMaxUSec": "infinity",
+        "SameProcessGroup": "no",
+        "SecureBits": "0",
+        "SendSIGHUP": "no",
+        "SendSIGKILL": "yes",
+        "Slice": "system.slice",
+        "StandardError": "null",
+        "StandardInput": "null",
+        "StandardInputData": "",
+        "StandardOutput": "null",
+        "StartLimitAction": "none",
+        "StartLimitBurst": "5",
+        "StartLimitIntervalUSec": "10s",
+        "StartupBlockIOWeight": "[not set]",
+        "StartupCPUShares": "[not set]",
+        "StartupCPUWeight": "[not set]",
+        "StartupIOWeight": "[not set]",
+        "StateChangeTimestamp": "Sun 2021-08-01 08:31:01 EDT",
+        "StateChangeTimestampMonotonic": "6806199",
+        "StateDirectoryMode": "0755",
+        "StatusErrno": "0",
+        "StopWhenUnneeded": "no",
+        "SubState": "running",
+        "SuccessAction": "none",
+        "SyslogFacility": "3",
+        "SyslogLevel": "6",
+        "SyslogLevelPrefix": "yes",
+        "SyslogPriority": "30",
+        "SystemCallErrorNumber": "0",
+        "TTYReset": "no",
+        "TTYVHangup": "no",
+        "TTYVTDisallocate": "no",
+        "TasksAccounting": "yes",
+        "TasksCurrent": "2",
+        "TasksMax": "10894",
+        "TimeoutStartUSec": "1min 30s",
+        "TimeoutStopUSec": "1min 30s",
+        "TimerSlackNSec": "50000",
+        "Transient": "no",
+        "Type": "dbus",
+        "UID": "[not set]",
+        "UMask": "0022",
+        "UnitFilePreset": "enabled",
+        "UnitFileState": "enabled",
+        "UtmpMode": "init",
+        "WantedBy": "multi-user.target",
+        "Wants": "network-pre.target",
+        "WatchdogTimestamp": "Sun 2021-08-01 08:31:01 EDT",
+        "WatchdogTimestampMonotonic": "6806198",
+        "WatchdogUSec": "0"
+    }
+}
+2021-08-01 23:33:04,136 p=4142 u=teguh n=ansible | TASK [configure firewall for samba] **************************************************************************************************
+2021-08-01 23:33:04,145 p=4210 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:04,146 p=4210 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'echo ~devops && sleep 0'"'"''
+2021-08-01 23:33:04,173 p=4210 u=teguh n=ansible | <redhat1.mshome.net> (0, b'/home/devops\n', b'')
+2021-08-01 23:33:04,174 p=4210 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:04,175 p=4210 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/devops/.ansible/tmp `"&& mkdir "` echo /home/devops/.ansible/tmp/ansible-tmp-1627835584.1740763-4210-101400848768533 `" && echo ansible-tmp-1627835584.1740763-4210-101400848768533="` echo /home/devops/.ansible/tmp/ansible-tmp-1627835584.1740763-4210-101400848768533 `" ) && sleep 0'"'"''
+2021-08-01 23:33:04,201 p=4210 u=teguh n=ansible | <redhat1.mshome.net> (0, b'ansible-tmp-1627835584.1740763-4210-101400848768533=/home/devops/.ansible/tmp/ansible-tmp-1627835584.1740763-4210-101400848768533\n', b'')
+2021-08-01 23:33:04,203 p=4210 u=teguh n=ansible | redirecting (type: modules) ansible.builtin.firewalld to ansible.posix.firewalld
+2021-08-01 23:33:04,304 p=4210 u=teguh n=ansible | Using module file /home/teguh/virtualenvs/ansible/lib/python3.8/site-packages/ansible_collections/ansible/posix/plugins/modules/firewalld.py
+2021-08-01 23:33:04,305 p=4210 u=teguh n=ansible | <redhat1.mshome.net> PUT /home/teguh/.ansible/tmp/ansible-local-41427xf_xzo3/tmpcwjn1dq8 TO /home/devops/.ansible/tmp/ansible-tmp-1627835584.1740763-4210-101400848768533/AnsiballZ_firewalld.py
+2021-08-01 23:33:04,306 p=4210 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d '[redhat1.mshome.net]'
+2021-08-01 23:33:04,348 p=4210 u=teguh n=ansible | <redhat1.mshome.net> (0, b'sftp> put /home/teguh/.ansible/tmp/ansible-local-41427xf_xzo3/tmpcwjn1dq8 /home/devops/.ansible/tmp/ansible-tmp-1627835584.1740763-4210-101400848768533/AnsiballZ_firewalld.py\n', b'')
+2021-08-01 23:33:04,349 p=4210 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:04,350 p=4210 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'chmod u+x /home/devops/.ansible/tmp/ansible-tmp-1627835584.1740763-4210-101400848768533/ /home/devops/.ansible/tmp/ansible-tmp-1627835584.1740763-4210-101400848768533/AnsiballZ_firewalld.py && sleep 0'"'"''
+2021-08-01 23:33:04,373 p=4210 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:33:04,373 p=4210 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:04,374 p=4210 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d -tt redhat1.mshome.net '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-jhmyranuodmboogcpcgzdpiwudjadoii ; /usr/libexec/platform-python /home/devops/.ansible/tmp/ansible-tmp-1627835584.1740763-4210-101400848768533/AnsiballZ_firewalld.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+2021-08-01 23:33:04,413 p=4210 u=teguh n=ansible | Escalation succeeded
+2021-08-01 23:33:04,697 p=4210 u=teguh n=ansible | <redhat1.mshome.net> (0, b'\r\n{"changed": false, "msg": "Permanent and Non-Permanent(immediate) operation", "invocation": {"module_args": {"state": "enabled", "permanent": true, "immediate": true, "service": "samba", "timeout": 0, "icmp_block": null, "icmp_block_inversion": null, "port": null, "port_forward": null, "rich_rule": null, "zone": null, "source": null, "interface": null, "masquerade": null, "offline": null, "target": null}}}\r\n', b'Shared connection to redhat1.mshome.net closed.\r\n')
+2021-08-01 23:33:04,698 p=4210 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:04,699 p=4210 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'rm -f -r /home/devops/.ansible/tmp/ansible-tmp-1627835584.1740763-4210-101400848768533/ > /dev/null 2>&1 && sleep 0'"'"''
+2021-08-01 23:33:04,722 p=4210 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:33:04,725 p=4142 u=teguh n=ansible | ok: [redhat1.mshome.net] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "icmp_block": null,
+            "icmp_block_inversion": null,
+            "immediate": true,
+            "interface": null,
+            "masquerade": null,
+            "offline": null,
+            "permanent": true,
+            "port": null,
+            "port_forward": null,
+            "rich_rule": null,
+            "service": "samba",
+            "source": null,
+            "state": "enabled",
+            "target": null,
+            "timeout": 0,
+            "zone": null
+        }
+    },
+    "msg": "Permanent and Non-Permanent(immediate) operation"
+}
+2021-08-01 23:33:04,746 p=4142 u=teguh n=ansible | TASK [deliver samba config] **********************************************************************************************************
+2021-08-01 23:33:04,753 p=4220 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:04,755 p=4220 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'echo ~devops && sleep 0'"'"''
+2021-08-01 23:33:04,777 p=4220 u=teguh n=ansible | <redhat1.mshome.net> (0, b'/home/devops\n', b'')
+2021-08-01 23:33:04,778 p=4220 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:04,779 p=4220 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/devops/.ansible/tmp `"&& mkdir "` echo /home/devops/.ansible/tmp/ansible-tmp-1627835584.7783568-4220-44061263736080 `" && echo ansible-tmp-1627835584.7783568-4220-44061263736080="` echo /home/devops/.ansible/tmp/ansible-tmp-1627835584.7783568-4220-44061263736080 `" ) && sleep 0'"'"''
+2021-08-01 23:33:04,806 p=4220 u=teguh n=ansible | <redhat1.mshome.net> (0, b'ansible-tmp-1627835584.7783568-4220-44061263736080=/home/devops/.ansible/tmp/ansible-tmp-1627835584.7783568-4220-44061263736080\n', b'')
+2021-08-01 23:33:04,807 p=4220 u=teguh n=ansible | <redhat1.mshome.net> ESTABLISH SSH CONNECTION FOR USER: devops
+2021-08-01 23:33:04,808 p=4220 u=teguh n=ansible | <redhat1.mshome.net> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="devops"' -o ConnectTimeout=10 -o ControlPath=/home/teguh/.ansible/cp/77870c817d redhat1.mshome.net '/bin/sh -c '"'"'rm -f -r /home/devops/.ansible/tmp/ansible-tmp-1627835584.7783568-4220-44061263736080/ > /dev/null 2>&1 && sleep 0'"'"''
+2021-08-01 23:33:04,831 p=4220 u=teguh n=ansible | <redhat1.mshome.net> (0, b'', b'')
+2021-08-01 23:33:04,834 p=4142 u=teguh n=ansible | The full traceback is:
+NoneType: None
+
+2021-08-01 23:33:04,835 p=4142 u=teguh n=ansible | fatal: [redhat1.mshome.net]: FAILED! => {
+    "changed": false,
+    "msg": "src and dest are required"
+}
+2021-08-01 23:33:04,836 p=4142 u=teguh n=ansible | PLAY RECAP ***************************************************************************************************************************
+2021-08-01 23:33:04,837 p=4142 u=teguh n=ansible | redhat1.mshome.net         : ok=7    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2021-08-01 23:34:46,879 p=4232 u=teguh n=ansible | PLAY [Install a samba server] ********************************************************************************************************
+2021-08-01 23:34:50,128 p=4232 u=teguh n=ansible | Perform task: TASK: Gathering Facts (N)o/(y)es/(c)ontinue: ***************************************************************************
+2021-08-01 23:34:50,128 p=4232 u=teguh n=ansible | TASK [Gathering Facts] ***************************************************************************************************************
+2021-08-01 23:34:51,666 p=4232 u=teguh n=ansible | ok: [redhat1.mshome.net]
+2021-08-01 23:34:52,531 p=4232 u=teguh n=ansible | Perform task: TASK: install samba (N)o/(y)es/(c)ontinue: *****************************************************************************
+2021-08-01 23:34:52,532 p=4232 u=teguh n=ansible | TASK [install samba] *****************************************************************************************************************
+2021-08-01 23:34:58,852 p=4232 u=teguh n=ansible | ok: [redhat1.mshome.net]
+2021-08-01 23:35:01,386 p=4232 u=teguh n=ansible | Perform task: TASK: install firewalld (N)o/(y)es/(c)ontinue: *************************************************************************
+2021-08-01 23:35:01,387 p=4232 u=teguh n=ansible | TASK [install firewalld] *************************************************************************************************************
+2021-08-01 23:35:06,812 p=4232 u=teguh n=ansible | ok: [redhat1.mshome.net]
+2021-08-01 23:35:11,285 p=4232 u=teguh n=ansible | Perform task: TASK: debug install_state variable (N)o/(y)es/(c)ontinue: **************************************************************
+2021-08-01 23:35:11,286 p=4232 u=teguh n=ansible | TASK [debug install_state variable] **************************************************************************************************
+2021-08-01 23:35:11,301 p=4232 u=teguh n=ansible | ok: [redhat1.mshome.net] => {
+    "msg": "The statefor the sambaservice is installed"
+}
+2021-08-01 23:35:14,718 p=4232 u=teguh n=ansible | Perform task: TASK: start samba (N)o/(y)es/(c)ontinue: *******************************************************************************
+2021-08-01 23:35:14,719 p=4232 u=teguh n=ansible | TASK [start samba] *******************************************************************************************************************
+2021-08-01 23:35:15,405 p=4232 u=teguh n=ansible | ok: [redhat1.mshome.net]
+2021-08-01 23:35:18,004 p=4232 u=teguh n=ansible | Perform task: TASK: start firewalld (N)o/(y)es/(c)ontinue: ***************************************************************************
+2021-08-01 23:35:18,005 p=4232 u=teguh n=ansible | TASK [start firewalld] ***************************************************************************************************************
+2021-08-01 23:35:18,538 p=4232 u=teguh n=ansible | ok: [redhat1.mshome.net]
+2021-08-01 23:35:19,435 p=4232 u=teguh n=ansible | Perform task: TASK: configure firewall for samba (N)o/(y)es/(c)ontinue: **************************************************************
+2021-08-01 23:35:19,436 p=4232 u=teguh n=ansible | TASK [configure firewall for samba] **************************************************************************************************
+2021-08-01 23:35:20,188 p=4232 u=teguh n=ansible | ok: [redhat1.mshome.net]
+2021-08-01 23:35:22,332 p=4232 u=teguh n=ansible | Perform task: TASK: deliver samba config (N)o/(y)es/(c)ontinue: **********************************************************************
+2021-08-01 23:35:22,333 p=4232 u=teguh n=ansible | TASK [deliver samba config] **********************************************************************************************************
+2021-08-01 23:35:23,288 p=4232 u=teguh n=ansible | changed: [redhat1.mshome.net]
+2021-08-01 23:35:23,325 p=4232 u=teguh n=ansible | PLAY RECAP ***************************************************************************************************************************
+2021-08-01 23:35:23,325 p=4232 u=teguh n=ansible | redhat1.mshome.net         : ok=8    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
