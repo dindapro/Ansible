@@ -1,3 +1,9 @@
+---
+- name: Ensure Apache Storate Configuration
+  hosts: localhost
+  vars_files:
+    - storage_vars.yml
+  tasks:
     - name: 1 Correct partitions exist on /dev/vdb
       parted:
         device: /dev/vdb

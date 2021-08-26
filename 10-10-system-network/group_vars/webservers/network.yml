@@ -3,5 +3,5 @@ network_connections:
   - name: ens4
     type: ethernet
     ip:
-      address:
+      address: 
         - 172.25.250.30/24

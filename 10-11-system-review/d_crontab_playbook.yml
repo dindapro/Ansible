@@ -2,7 +2,7 @@
 - name: Recurring cron job
   hosts: webservers
   become: true
-tasks:
+  tasks:
     - name: Crontab file exists
       cron:
         name: Add date and time to a file

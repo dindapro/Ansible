@@ -16,4 +16,4 @@
     - name: Install Example motd package
       yum:
         name: example-motd
-        state: present                
+        state: present
